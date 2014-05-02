@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "My micro-reddit walkthrough"
-date:   2014-05-02
-categories: walkthrough
+title:  Micro-Reddit walkthrough
+comments: true
+permalink: micro-reddit-walkthrough
 ---
 
 Estimated Time: 1 hr 30 min
