@@ -1,15 +1,15 @@
 ---
 layout: post
-title:  Welcome to Valhalla
+title: Build a Minimalist Blog
 comments: true
-permalink: welcome-to-valhalla
+permalink: build-a-minimalist-blog
 ---
 
 I am currently working on projects in the [Odin curriculum](http://www.theodinproject.com/home). 
 
 I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and future berserkers who get stuck and frustrated to the point of madness.
 
-This website is hosted on github pages and generated with jekyll and poole.
+It took me an afternoon to get the website set up and deployed. It is hosted on github pages and generated with jekyll and poole.
 
 ###The Tools:
 

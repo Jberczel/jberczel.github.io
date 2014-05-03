@@ -309,40 +309,326 @@
 
     <span class="post-date">02 May 2014</span>
 
-    <p>Estimated Time: 1 hr 30 min</p>
+    <p>Estimated Time: 1 hr</p>
+
+<h3>Objective:</h3>
+
+<blockquote>
+<p>Let&#39;s build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you&#39;ll build the data structures necessary to support link submissions and commenting. We won&#39;t build a front end for it because we don&#39;t need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.</p>
+</blockquote>
 
 <p>Basic Steps:</p>
 
 <ol>
-<li>Create Rails App</li>
-<li>Create User Model</li>
-<li>Create Post Model</li>
-<li>Build Associations between two models</li>
-<li>Create Comment Model</li>
+<li><a href="#step1">Create Rails App</a></li>
+<li><a href="#step2">Create User Model</a></li>
+<li><a href="#step3">Create Post Model</a></li>
+<li><a href="#step4">Build Associations between two models</a></li>
+<li><a href="#step5">Create Comment Model</a></li>
 <li>Build additional assocations</li>
 <li>Check valid associations in console</li>
 </ol>
 
-<h2>Create Rails App</h2>
+<p><a name="step1"></a></p>
 
-<p>From the command line:</p>
+<h3>Step 1: Create Rails App</h3>
+
+<p>Create a basic Rails app. Rails does all the heavy lifting. All you have to do is run
+the <code>rails new &lt;project name&gt;</code> command from your terminal, which creates a basic Rails directory structure with everything you need to run a simple app.</p>
+
+<p>From the command line, run:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">jamies-air:~ jxberc$</span> rails new micro-reddit
 </code></pre></div>
 
-<p>Ruby example:</p>
+<p>And you should see:</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="k">def</span> <span class="nf">foo</span>
-  <span class="nb">puts</span> <span class="s1">&#39;foo&#39;</span>
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:~ jxberc$</span> rails new micro-reddit
+<span class="go">      create</span>
+<span class="go">      create  README.rdoc</span>
+<span class="go">      create  Rakefile</span>
+<span class="go">      create  config.ru</span>
+<span class="go">      create  .gitignore</span>
+<span class="go">      create  Gemfile</span>
+<span class="go">      create  app</span>
+<span class="go">      create  app/assets/javascripts/application.js</span>
+<span class="go">      create  app/assets/stylesheets/application.css</span>
+<span class="go">      create  app/controllers/application_controller.rb</span>
+<span class="go">      create  app/helpers/application_helper.rb</span>
+<span class="go">      create  app/views/layouts/application.html.erb</span>
+<span class="go">      ...</span>
+</code></pre></div>
+
+<p>After you create new direcotry, change into that directory from the command line:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:~ jxberc$</span> <span class="nb">cd </span>micro-reddit
+<span class="gp">jamies-air:micro-reddit jxberc$</span>
+</code></pre></div>
+
+<p><a name="step2"></a></p>
+
+<h3>Step 2: Create a User Model</h3>
+
+<p>From the command line, run:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails generate model User username:string, email:string, password:string
+</code></pre></div>
+
+<p>The <code>rails generate</code> script creates templates for models, controllers, and views. In this case, we will generate a new <code>model</code>, and name it <code>User</code>.</p>
+
+<p>The additional arguments <code>username:string</code>, <code>email:string</code>, and <code>password:string</code> create 3 columns and sets their data type to string.</p>
+
+<p>After you create the User Model, you should see this in your terminal:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails generate model User username:string, email:string, password:string
+<span class="go">      invoke  active_record</span>
+<span class="go">      create    db/migrate/20140502132449_create_users.rb</span>
+<span class="go">      create    app/models/user.rb</span>
+<span class="go">      invoke    test_unit</span>
+<span class="go">      create      test/models/user_test.rb</span>
+<span class="go">      create      test/fixtures/users.yml</span>
+</code></pre></div>
+
+<p>Check the <code>micro-reddit/db/migrate/</code> folder to confirm migration file was created. It should look like this:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:username</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:email</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:password</span>
+
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div>
+
+<p>From the command line, run:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rake db:migrate
+<span class="go">== 20140502150931 CreateComments: migrating ===================================</span>
+<span class="go">-- create_table(:comments)</span>
+<span class="go">   -&gt; 0.0074s</span>
+<span class="go">== 20140502150931 CreateComments: migrated (0.0074s) ==========================</span>
+</code></pre></div>
+
+<p>The <code>rake db:migrate</code> command should create a sql database in your <code>micro-reddit/db</code> folder.</p>
+
+<h4>Working with the Model in the Console</h4>
+
+<p>From command line, run:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails console
+<span class="go">Loading development environment (Rails 4.0.4)</span>
+<span class="go">2.0.0-p451 :001 &gt;</span>
+</code></pre></div>
+
+<p>Check User Table, should be empty:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :003 &gt; User.all
+  User Load <span class="o">(</span>0.3ms<span class="o">)</span>  SELECT <span class="s2">&quot;users&quot;</span>.* FROM <span class="s2">&quot;users&quot;</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;ActiveRecord::Relation []&gt;</span>
+</code></pre></div>
+
+<p>Create a new User record:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :004 &gt; <span class="nv">u</span> <span class="o">=</span> User.new
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: nil, username: nil, email: nil, password: nil, created_at: nil, updated_at: nil&gt;</span>
+</code></pre></div>
+
+<p>Check if record is valid:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :005 &gt; u.valid?
+ <span class="o">=</span>&gt; <span class="nb">true</span>
+</code></pre></div>
+
+<p>It&#39;s currently valid because we have no validations.  We don&#39;t want to accidently create blank usernames, so we can create validations in the <code>app/models/user.rb</code> file:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">validates</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">uniqueness</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
+            <span class="ss">length</span><span class="p">:</span> <span class="p">{</span> <span class="ss">minimum</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="ss">maximum</span><span class="p">:</span> <span class="mi">26</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Reload the console, and confirm validations are working:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :010 &gt; reload!
+Reloading...
+ <span class="o">=</span>&gt; <span class="nb">true</span>
+2.0.0-p451 :011 &gt; <span class="nv">u2</span> <span class="o">=</span> User.new
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: nil, username: nil, email: nil, password: nil, created_at: nil, updated_at: nil&gt;</span>
+2.0.0-p451 :012 &gt; u2.valid?
+  User Exists <span class="o">(</span>0.2ms<span class="o">)</span>  SELECT 1 AS one FROM <span class="s2">&quot;users&quot;</span> WHERE <span class="s2">&quot;users&quot;</span>.<span class="s2">&quot;username&quot;</span> IS NULL LIMIT <span class="nv">1</span>
+ <span class="o">=</span>&gt; <span class="nb">false</span>
+2.0.0-p451 :013 &gt;
+</code></pre></div>
+
+<p>If you can&#39;t save record to database, it is good to check error messages with <code>#errors.full_messages</code> method:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :021 &gt; <span class="nv">u</span> <span class="o">=</span> User.new<span class="o">(</span>username: <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span><span class="o">)</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: nil, username: &quot;abcdefghijklmnopqrstuvwxyz&quot;, email: nil, password: nil, created_at: nil, updated_at: nil&gt;</span>
+ 
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash"> 2.0.0-p451 :024 &gt; u.errors.full_messages
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="s2">&quot;Username is too long (maximum is 20 characters)&quot;</span><span class="o">]</span>
+</code></pre></div>
+
+<p>Finally, create a user and save to User table:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :019 &gt; <span class="nv">u</span> <span class="o">=</span> User.new<span class="o">(</span>username: <span class="s1">&#39;Thor&#39;</span>, email: <span class="s1">&#39;Thor@email.com&#39;</span>, password: <span class="s1">&#39;foobar&#39;</span><span class="o">)</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: nil, username: &quot;Thor&quot;, email: &quot;Thor@email.com&quot;, password: &quot;foobar&quot;, created_at: nil, updated_at: nil&gt;</span>
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :020 &gt; u.save
+   <span class="o">(</span>0.1ms<span class="o">)</span>  begin transaction
+  User Exists <span class="o">(</span>0.2ms<span class="o">)</span>  SELECT 1 AS one FROM <span class="s2">&quot;users&quot;</span> WHERE <span class="s2">&quot;users&quot;</span>.<span class="s2">&quot;username&quot;</span> <span class="o">=</span> <span class="s1">&#39;Thor&#39;</span> LIMIT 1
+  SQL <span class="o">(</span>4.8ms<span class="o">)</span>  INSERT INTO <span class="s2">&quot;users&quot;</span> <span class="o">(</span><span class="s2">&quot;created_at&quot;</span>, <span class="s2">&quot;email&quot;</span>, <span class="s2">&quot;password&quot;</span>, <span class="s2">&quot;updated_at&quot;</span>, <span class="s2">&quot;username&quot;</span><span class="o">)</span> VALUES <span class="o">(</span>?, ?, ?, ?, ?<span class="o">)</span>  <span class="o">[[</span><span class="s2">&quot;created_at&quot;</span>, Sat, 03 May 2014 15:43:22 UTC +00:00<span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;email&quot;</span>, <span class="s2">&quot;Thor@email.com&quot;</span><span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;password&quot;</span>, <span class="s2">&quot;foobar&quot;</span><span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span>, Sat, 03 May 2014 15:43:22 UTC +00:00<span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;username&quot;</span>, <span class="s2">&quot;Thor&quot;</span><span class="o">]]</span>
+   <span class="o">(</span>0.8ms<span class="o">)</span>  commit <span class="nv">transaction</span>
+ <span class="o">=</span>&gt; <span class="nb">true</span>
+</code></pre></div>
+
+<p><a name="step3"></a></p>
+
+<h3>Step 3: Create a Post Model</h3>
+
+<p>Generate new model <code>Post</code>:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails generate model Post title:string body:text
+<span class="go">      invoke  active_record</span>
+<span class="go">      create    db/migrate/20140502133817_create_posts.rb</span>
+<span class="go">      create    app/models/post.rb</span>
+<span class="go">      invoke    test_unit</span>
+<span class="go">      create      test/models/post_test.rb</span>
+<span class="go">      create      test/fixtures/posts.yml</span>
+</code></pre></div>
+
+<p>Code above generates <code>Post</code> model with <code>title:</code> and <code>body:</code> columns.</p>
+
+<p>Migrate table to database:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rake db:migrate
+<span class="go">== 20140502133817 CreatePosts: migrating ======================================</span>
+<span class="go">-- create_table(:posts)</span>
+<span class="go">   -&gt; 0.0062s</span>
+<span class="go">== 20140502133817 CreatePosts: migrated (0.0063s) =============================</span>
+</code></pre></div>
+
+<p>Add some validations to <code>app/models/post.rb</code>:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span><span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Confirm that you can create and save a post in the console:</p>
+
+<p>Run <code>rails console</code> if you haven&#39;t already.</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :025 &gt; <span class="nv">p</span> <span class="o">=</span> Post.new
+ <span class="o">=</span>&gt; <span class="c">#&lt;Post id: nil, title: nil, body: nil, created_at: nil, updated_at: nil, user_id: nil&gt;</span>
+2.0.0-p451 :026 &gt; p.title <span class="o">=</span> <span class="s1">&#39;First Post&#39;</span>
+ <span class="o">=</span>&gt; <span class="s2">&quot;First Post&quot;</span>
+2.0.0-p451 :027 &gt; p.body <span class="o">=</span> <span class="s1">&#39;Hello World&#39;</span>
+ <span class="o">=</span>&gt; <span class="s2">&quot;Hello World&quot;</span>
+2.0.0-p451 :028 &gt; p.save
+   <span class="o">(</span>0.1ms<span class="o">)</span>  begin transaction
+  SQL <span class="o">(</span>0.7ms<span class="o">)</span>  INSERT INTO <span class="s2">&quot;posts&quot;</span> <span class="o">(</span><span class="s2">&quot;body&quot;</span>, <span class="s2">&quot;created_at&quot;</span>, <span class="s2">&quot;title&quot;</span>, <span class="s2">&quot;updated_at&quot;</span><span class="o">)</span> VALUES <span class="o">(</span>?, ?, ?, ?<span class="o">)</span>  <span class="o">[[</span><span class="s2">&quot;body&quot;</span>, <span class="s2">&quot;Hello World&quot;</span><span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;created_at&quot;</span>, Sat, 03 May 2014 17:21:54 UTC +00:00<span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;title&quot;</span>, <span class="s2">&quot;First Post&quot;</span><span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span>, Sat, 03 May 2014 17:21:54 UTC +00:00<span class="o">]]</span>
+   <span class="o">(</span>0.8ms<span class="o">)</span>  commit <span class="nv">transaction</span>
+ <span class="o">=</span>&gt; <span class="nb">true</span>
+</code></pre></div>
+
+<p><a name="step4"></a></p>
+
+<h3>Step 4: Build Associations between User and Post Models</h3>
+
+<p>Generate Migration to Add Foreign Key to <code>Post</code> Model.</p>
+
+<div class="highlight"><pre><code class="bash">jamies-air:micro-reddit jxberc<span class="nv">$ </span>rails generate migration AddForeignKeyToPost user:references
+      invoke  active_record
+      create    db/migrate/20140502140547_add_foreign_key_to_post.rb
+</code></pre></div>
+
+<p>The <code>user:references</code> argument will add a column with foreign key that references User model.</p>
+
+<p>Check <code>db/migrate</code> folder to see new migration file:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">AddForeignKeyToPost</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">add_reference</span> <span class="ss">:posts</span><span class="p">,</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span> <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Run migration:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rake db:migrate
+<span class="go">== 20140502140547 AddForeignKeyToPost: migrating ==============================</span>
+<span class="go">-- add_reference(:posts, :user, {:index=&gt;true})</span>
+<span class="go">   -&gt; 0.0033s</span>
+<span class="go">== 20140502140547 AddForeignKeyToPost: migrated (0.0034s) =====================</span>
+</code></pre></div>
+
+<p>Create relationships in <code>app/models/post.rb</code> and <code>app/models/user.rb</code>:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="n">has_many</span> <span class="ss">:posts</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The above code creates the relationship between <code>Post</code> and <code>User</code> models.  It basically says a post belongs to a user, and a user can have many posts.  This is known as a one-to-many relationship.  </p>
+
+<p>Goign forward, you will likely see the <code>belongs_to</code> and <code>has_many</code> helper methods a lot when building models in Rails.</p>
+
+<p>Confirm associations in console:</p>
+
+<p>First, create a new user, </p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :016 &gt; <span class="nv">u</span> <span class="o">=</span> User.create<span class="o">(</span>username: <span class="s2">&quot;Odin&quot;</span>, email: <span class="s2">&quot;odin@email.com&quot;</span>, password: <span class="s2">&quot;foobar&quot;</span><span class="o">)</span>
+...
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: 5, username: &quot;Odin&quot;, email: &quot;odin@email.com&quot;, password: &quot;foobar&quot;, created_at: &quot;2014-05-03 18:02:23&quot;, updated_at: &quot;2014-05-03 18:02:23&quot;&gt;</span>
+</code></pre></div>
+
+<p>Now create new post referencing new user.  Add the <code>user_id</code> from previously created user. In the above example, the user id is 5.</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :017 &gt; <span class="nv">p</span> <span class="o">=</span> Post.create<span class="o">(</span>title: <span class="s2">&quot;A New Post&quot;</span>, body: <span class="s2">&quot;A post by Odin himself.&quot;</span>, user_id: 5<span class="o">)</span>
+...
+ <span class="o">=</span>&gt; <span class="c">#&lt;Post id: 4, title: &quot;A New Post&quot;, body: &quot;A post by Odin himself.&quot;, created_at: &quot;2014-05-03 18:03:16&quot;, updated_at: &quot;2014-05-03 18:03:16&quot;, user_id: 5&gt;</span>
+</code></pre></div>
+
+<p>Confirm you can find posts for given user:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :018 &gt; u.posts
+  Post Load <span class="o">(</span>0.2ms<span class="o">)</span>  SELECT <span class="s2">&quot;posts&quot;</span>.* FROM <span class="s2">&quot;posts&quot;</span> WHERE <span class="s2">&quot;posts&quot;</span>.<span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> ?  <span class="o">[[</span><span class="s2">&quot;user_id&quot;</span>, 5<span class="o">]]</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;ActiveRecord::Associations::CollectionProxy [#&lt;Post id: 4, title: &quot;A New Post&quot;, body: &quot;A post by Odin himself.&quot;, created_at: &quot;2014-05-03 18:03:16&quot;, updated_at: &quot;2014-05-03 18:03:16&quot;, user_id: 5&gt;]&gt;</span>
+</code></pre></div>
+
+<p>Finally, confirm you can find User for given post (the other side of the relationship):</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :021 &gt; p.user
+  User Load <span class="o">(</span>0.2ms<span class="o">)</span>  SELECT <span class="s2">&quot;users&quot;</span>.* FROM <span class="s2">&quot;users&quot;</span> WHERE <span class="s2">&quot;users&quot;</span>.<span class="s2">&quot;id&quot;</span> <span class="o">=</span> ? LIMIT 1  <span class="o">[[</span><span class="s2">&quot;id&quot;</span>, 5<span class="o">]]</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: 5, username: &quot;Odin&quot;, email: &quot;odin@email.com&quot;, password: &quot;foobar&quot;, created_at: &quot;2014-05-03 18:02:23&quot;, updated_at: &quot;2014-05-03 18:02:23&quot;&gt;</span>
+</code></pre></div>
+
+<p><a name="step5"></a></p>
+
+<h3>Step 5: Build Comments Model</h3>
 
   </div>
   
   <div class="post">
     <h1 class="post-title">
-      <a href="/welcome-to-valhalla">
-        Welcome to Valhalla
+      <a href="/build-a-minimalist-blog">
+        Build a Minimalist Blog
       </a>
     </h1>
 
@@ -352,7 +638,7 @@
 
 <p>I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and future berserkers who get stuck and frustrated to the point of madness.</p>
 
-<p>This website is hosted on github pages and generated with jekyll and poole.</p>
+<p>It took me an afternoon to get the website set up and deployed. It is hosted on github pages and generated with jekyll and poole.</p>
 
 <h3>The Tools:</h3>
 

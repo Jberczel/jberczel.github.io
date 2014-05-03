@@ -4,7 +4,7 @@
  <title>The Odin Experience</title>
  <link href="http://jberczel.github.com/atom.xml" rel="self"/>
  <link href="http://jberczel.github.com/"/>
- <updated>2014-05-02T21:24:59-04:00</updated>
+ <updated>2014-05-03T14:22:42-04:00</updated>
  <id>http://jberczel.github.com</id>
  <author>
    <name>Jamie Berczel</name>
@@ -210,46 +210,332 @@
    <link href="http://jberczel.github.com/micro-reddit-walkthrough"/>
    <updated>2014-05-02T00:00:00-04:00</updated>
    <id>http://jberczel.github.com/my-micro-reddit</id>
-   <content type="html">&lt;p&gt;Estimated Time: 1 hr 30 min&lt;/p&gt;
+   <content type="html">&lt;p&gt;Estimated Time: 1 hr&lt;/p&gt;
+
+&lt;h3&gt;Objective:&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Let&amp;#39;s build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you&amp;#39;ll build the data structures necessary to support link submissions and commenting. We won&amp;#39;t build a front end for it because we don&amp;#39;t need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;Basic Steps:&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Create Rails App&lt;/li&gt;
-&lt;li&gt;Create User Model&lt;/li&gt;
-&lt;li&gt;Create Post Model&lt;/li&gt;
-&lt;li&gt;Build Associations between two models&lt;/li&gt;
-&lt;li&gt;Create Comment Model&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step1&quot;&gt;Create Rails App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step2&quot;&gt;Create User Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step3&quot;&gt;Create Post Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step4&quot;&gt;Build Associations between two models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step5&quot;&gt;Create Comment Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Build additional assocations&lt;/li&gt;
 &lt;li&gt;Check valid associations in console&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2&gt;Create Rails App&lt;/h2&gt;
+&lt;p&gt;&lt;a name=&quot;step1&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;From the command line:&lt;/p&gt;
+&lt;h3&gt;Step 1: Create Rails App&lt;/h3&gt;
+
+&lt;p&gt;Create a basic Rails app. Rails does all the heavy lifting. All you have to do is run
+the &lt;code&gt;rails new &amp;lt;project name&amp;gt;&lt;/code&gt; command from your terminal, which creates a basic Rails directory structure with everything you need to run a simple app.&lt;/p&gt;
+
+&lt;p&gt;From the command line, run:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:~ jxberc$&lt;/span&gt; rails new micro-reddit
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Ruby example:&lt;/p&gt;
+&lt;p&gt;And you should see:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:~ jxberc$&lt;/span&gt; rails new micro-reddit
+&lt;span class=&quot;go&quot;&gt;      create&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  README.rdoc&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  Rakefile&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  config.ru&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  .gitignore&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  Gemfile&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  app&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  app/assets/javascripts/application.js&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  app/assets/stylesheets/application.css&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  app/controllers/application_controller.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  app/helpers/application_helper.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create  app/views/layouts/application.html.erb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      ...&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After you create new direcotry, change into that directory from the command line:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:~ jxberc$&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;micro-reddit
+&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;step2&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 2: Create a User Model&lt;/h3&gt;
+
+&lt;p&gt;From the command line, run:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rails generate model User username:string, email:string, password:string
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;rails generate&lt;/code&gt; script creates templates for models, controllers, and views. In this case, we will generate a new &lt;code&gt;model&lt;/code&gt;, and name it &lt;code&gt;User&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The additional arguments &lt;code&gt;username:string&lt;/code&gt;, &lt;code&gt;email:string&lt;/code&gt;, and &lt;code&gt;password:string&lt;/code&gt; create 3 columns and sets their data type to string.&lt;/p&gt;
+
+&lt;p&gt;After you create the User Model, you should see this in your terminal:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rails generate model User username:string, email:string, password:string
+&lt;span class=&quot;go&quot;&gt;      invoke  active_record&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create    db/migrate/20140502132449_create_users.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create    app/models/user.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      invoke    test_unit&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create      test/models/user_test.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create      test/fixtures/users.yml&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check the &lt;code&gt;micro-reddit/db/migrate/&lt;/code&gt; folder to confirm migration file was created. It should look like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CreateUsers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;change&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;create_table&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:users&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:email&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:password&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timestamps&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;From the command line, run:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rake db:migrate
+&lt;span class=&quot;go&quot;&gt;== 20140502150931 CreateComments: migrating ===================================&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;-- create_table(:comments)&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;   -&amp;gt; 0.0074s&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;== 20140502150931 CreateComments: migrated (0.0074s) ==========================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;rake db:migrate&lt;/code&gt; command should create a sql database in your &lt;code&gt;micro-reddit/db&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h4&gt;Working with the Model in the Console&lt;/h4&gt;
+
+&lt;p&gt;From command line, run:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rails console
+&lt;span class=&quot;go&quot;&gt;Loading development environment (Rails 4.0.4)&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;2.0.0-p451 :001 &amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check User Table, should be empty:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :003 &amp;gt; User.all
+  User Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.3ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;ActiveRecord::Relation []&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Create a new User record:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :004 &amp;gt; &lt;span class=&quot;nv&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; User.new
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: nil, username: nil, email: nil, password: nil, created_at: nil, updated_at: nil&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check if record is valid:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :005 &amp;gt; u.valid?
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It&amp;#39;s currently valid because we have no validations.  We don&amp;#39;t want to accidently create blank usernames, so we can create validations in the &lt;code&gt;app/models/user.rb&lt;/code&gt; file:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;ss&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;maximum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Reload the console, and confirm validations are working:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :010 &amp;gt; reload!
+Reloading...
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+2.0.0-p451 :011 &amp;gt; &lt;span class=&quot;nv&quot;&gt;u2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; User.new
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: nil, username: nil, email: nil, password: nil, created_at: nil, updated_at: nil&amp;gt;&lt;/span&gt;
+2.0.0-p451 :012 &amp;gt; u2.valid?
+  User Exists &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.2ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT 1 AS one FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;username&amp;quot;&lt;/span&gt; IS NULL LIMIT &lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+2.0.0-p451 :013 &amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you can&amp;#39;t save record to database, it is good to check error messages with &lt;code&gt;#errors.full_messages&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :021 &amp;gt; &lt;span class=&quot;nv&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; User.new&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;username: &lt;span class=&quot;s1&quot;&gt;&amp;#39;abcdefghijklmnopqrstuvwxyz&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: nil, username: &amp;quot;abcdefghijklmnopqrstuvwxyz&amp;quot;, email: nil, password: nil, created_at: nil, updated_at: nil&amp;gt;&lt;/span&gt;
+ 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt; 2.0.0-p451 :024 &amp;gt; u.errors.full_messages
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;Username is too long (maximum is 20 characters)&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, create a user and save to User table:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :019 &amp;gt; &lt;span class=&quot;nv&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; User.new&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;username: &lt;span class=&quot;s1&quot;&gt;&amp;#39;Thor&amp;#39;&lt;/span&gt;, email: &lt;span class=&quot;s1&quot;&gt;&amp;#39;Thor@email.com&amp;#39;&lt;/span&gt;, password: &lt;span class=&quot;s1&quot;&gt;&amp;#39;foobar&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: nil, username: &amp;quot;Thor&amp;quot;, email: &amp;quot;Thor@email.com&amp;quot;, password: &amp;quot;foobar&amp;quot;, created_at: nil, updated_at: nil&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :020 &amp;gt; u.save
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  begin transaction
+  User Exists &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.2ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT 1 AS one FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;username&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Thor&amp;#39;&lt;/span&gt; LIMIT 1
+  SQL &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;4.8ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  INSERT INTO &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;updated_at&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;username&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?, ?, ?, ?, ?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;, Sat, 03 May 2014 15:43:22 UTC +00:00&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;email&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;Thor@email.com&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;password&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;foobar&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;updated_at&amp;quot;&lt;/span&gt;, Sat, 03 May 2014 15:43:22 UTC +00:00&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;username&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;Thor&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.8ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  commit &lt;span class=&quot;nv&quot;&gt;transaction&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;step3&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 3: Create a Post Model&lt;/h3&gt;
+
+&lt;p&gt;Generate new model &lt;code&gt;Post&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rails generate model Post title:string body:text
+&lt;span class=&quot;go&quot;&gt;      invoke  active_record&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create    db/migrate/20140502133817_create_posts.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create    app/models/post.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      invoke    test_unit&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create      test/models/post_test.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create      test/fixtures/posts.yml&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Code above generates &lt;code&gt;Post&lt;/code&gt; model with &lt;code&gt;title:&lt;/code&gt; and &lt;code&gt;body:&lt;/code&gt; columns.&lt;/p&gt;
+
+&lt;p&gt;Migrate table to database:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rake db:migrate
+&lt;span class=&quot;go&quot;&gt;== 20140502133817 CreatePosts: migrating ======================================&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;-- create_table(:posts)&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;   -&amp;gt; 0.0062s&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;== 20140502133817 CreatePosts: migrated (0.0063s) =============================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Add some validations to &lt;code&gt;app/models/post.rb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Confirm that you can create and save a post in the console:&lt;/p&gt;
+
+&lt;p&gt;Run &lt;code&gt;rails console&lt;/code&gt; if you haven&amp;#39;t already.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :025 &amp;gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Post.new
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Post id: nil, title: nil, body: nil, created_at: nil, updated_at: nil, user_id: nil&amp;gt;&lt;/span&gt;
+2.0.0-p451 :026 &amp;gt; p.title &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;First Post&amp;#39;&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;First Post&amp;quot;&lt;/span&gt;
+2.0.0-p451 :027 &amp;gt; p.body &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello World&amp;#39;&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt;
+2.0.0-p451 :028 &amp;gt; p.save
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  begin transaction
+  SQL &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.7ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  INSERT INTO &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;body&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;title&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;updated_at&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?, ?, ?, ?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;body&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;, Sat, 03 May 2014 17:21:54 UTC +00:00&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;title&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;First Post&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;updated_at&amp;quot;&lt;/span&gt;, Sat, 03 May 2014 17:21:54 UTC +00:00&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.8ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  commit &lt;span class=&quot;nv&quot;&gt;transaction&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;step4&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 4: Build Associations between User and Post Models&lt;/h3&gt;
+
+&lt;p&gt;Generate Migration to Add Foreign Key to &lt;code&gt;Post&lt;/code&gt; Model.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;jamies-air:micro-reddit jxberc&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rails generate migration AddForeignKeyToPost user:references
+      invoke  active_record
+      create    db/migrate/20140502140547_add_foreign_key_to_post.rb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;user:references&lt;/code&gt; argument will add a column with foreign key that references User model.&lt;/p&gt;
+
+&lt;p&gt;Check &lt;code&gt;db/migrate&lt;/code&gt; folder to see new migration file:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AddForeignKeyToPost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;change&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;add_reference&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Run migration:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rake db:migrate
+&lt;span class=&quot;go&quot;&gt;== 20140502140547 AddForeignKeyToPost: migrating ==============================&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;-- add_reference(:posts, :user, {:index=&amp;gt;true})&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;   -&amp;gt; 0.0033s&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;== 20140502140547 AddForeignKeyToPost: migrated (0.0034s) =====================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Create relationships in &lt;code&gt;app/models/post.rb&lt;/code&gt; and &lt;code&gt;app/models/user.rb&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:posts&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The above code creates the relationship between &lt;code&gt;Post&lt;/code&gt; and &lt;code&gt;User&lt;/code&gt; models.  It basically says a post belongs to a user, and a user can have many posts.  This is known as a one-to-many relationship.  &lt;/p&gt;
+
+&lt;p&gt;Goign forward, you will likely see the &lt;code&gt;belongs_to&lt;/code&gt; and &lt;code&gt;has_many&lt;/code&gt; helper methods a lot when building models in Rails.&lt;/p&gt;
+
+&lt;p&gt;Confirm associations in console:&lt;/p&gt;
+
+&lt;p&gt;First, create a new user, &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :016 &amp;gt; &lt;span class=&quot;nv&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; User.create&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;username: &lt;span class=&quot;s2&quot;&gt;&amp;quot;Odin&amp;quot;&lt;/span&gt;, email: &lt;span class=&quot;s2&quot;&gt;&amp;quot;odin@email.com&amp;quot;&lt;/span&gt;, password: &lt;span class=&quot;s2&quot;&gt;&amp;quot;foobar&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+...
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: 5, username: &amp;quot;Odin&amp;quot;, email: &amp;quot;odin@email.com&amp;quot;, password: &amp;quot;foobar&amp;quot;, created_at: &amp;quot;2014-05-03 18:02:23&amp;quot;, updated_at: &amp;quot;2014-05-03 18:02:23&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now create new post referencing new user.  Add the &lt;code&gt;user_id&lt;/code&gt; from previously created user. In the above example, the user id is 5.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :017 &amp;gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Post.create&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;title: &lt;span class=&quot;s2&quot;&gt;&amp;quot;A New Post&amp;quot;&lt;/span&gt;, body: &lt;span class=&quot;s2&quot;&gt;&amp;quot;A post by Odin himself.&amp;quot;&lt;/span&gt;, user_id: 5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+...
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Post id: 4, title: &amp;quot;A New Post&amp;quot;, body: &amp;quot;A post by Odin himself.&amp;quot;, created_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, updated_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, user_id: 5&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Confirm you can find posts for given user:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :018 &amp;gt; u.posts
+  Post Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.2ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;user_id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ?  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;user_id&amp;quot;&lt;/span&gt;, 5&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;ActiveRecord::Associations::CollectionProxy [#&amp;lt;Post id: 4, title: &amp;quot;A New Post&amp;quot;, body: &amp;quot;A post by Odin himself.&amp;quot;, created_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, updated_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, user_id: 5&amp;gt;]&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Finally, confirm you can find User for given post (the other side of the relationship):&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :021 &amp;gt; p.user
+  User Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.2ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;, 5&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: 5, username: &amp;quot;Odin&amp;quot;, email: &amp;quot;odin@email.com&amp;quot;, password: &amp;quot;foobar&amp;quot;, created_at: &amp;quot;2014-05-03 18:02:23&amp;quot;, updated_at: &amp;quot;2014-05-03 18:02:23&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;step5&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 5: Build Comments Model&lt;/h3&gt;
 </content>
  </entry>
  
  <entry>
-   <title>Welcome to Valhalla</title>
-   <link href="http://jberczel.github.com/welcome-to-valhalla"/>
+   <title>Build a Minimalist Blog</title>
+   <link href="http://jberczel.github.com/build-a-minimalist-blog"/>
    <updated>2014-05-01T00:00:00-04:00</updated>
    <id>http://jberczel.github.com/welcome-to-valhalla</id>
    <content type="html">&lt;p&gt;I am currently working on projects in the &lt;a href=&quot;http://www.theodinproject.com/home&quot;&gt;Odin curriculum&lt;/a&gt;. &lt;/p&gt;
 
 &lt;p&gt;I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and future berserkers who get stuck and frustrated to the point of madness.&lt;/p&gt;
 
-&lt;p&gt;This website is hosted on github pages and generated with jekyll and poole.&lt;/p&gt;
+&lt;p&gt;It took me an afternoon to get the website set up and deployed. It is hosted on github pages and generated with jekyll and poole.&lt;/p&gt;
 
 &lt;h3&gt;The Tools:&lt;/h3&gt;
 
