@@ -7,7 +7,7 @@ permalink: micro-reddit-walkthrough
 
 Estimated Time: 1 hr
 
-###Objective:
+##Objective:
 > Let's build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you'll build the data structures necessary to support link submissions and commenting. We won't build a front end for it because we don't need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.
 
 Basic Steps:
@@ -15,13 +15,13 @@ Basic Steps:
 1. [Create Rails App](#step1)
 2. [Create User Model](#step2)
 3. [Create Post Model](#step3)
-4. [Build Associations between two models](#step4)
+4. [Build Associations between User and Post models](#step4)
 5. [Create Comment Model](#step5)
-6. Build additional assocations
+6. [Build additional assocations](#step6)
 7. Check valid associations in console
 
 <a name="step1"></a>
-### Step 1: Create Rails App
+## Step 1: Create Rails App
 
 Create a basic Rails app. Rails does all the heavy lifting. All you have to do is run
 the `rails new <project name>` command from your terminal, which creates a basic Rails directory structure with everything you need to run a simple app.
@@ -57,7 +57,7 @@ jamies-air:micro-reddit jxberc$
 
 
 <a name="step2"></a>
-### Step 2: Create a User Model
+## Step 2: Create a User Model
 
 From the command line, run:
 {% highlight console %}
@@ -107,7 +107,7 @@ jamies-air:micro-reddit jxberc$ rake db:migrate
 
 The `rake db:migrate` command should create a sql database in your `micro-reddit/db` folder.
 
-#### Working with the Model in the Console
+### Working with the Model in the Console
 
 From command line, run:
 {% highlight console %}
@@ -187,7 +187,7 @@ Finally, create a user and save to User table:
 {% endhighlight %}
 
 <a name="step3"></a>
-### Step 3: Create a Post Model
+## Step 3: Create a Post Model
 
 Generate new model `Post`:
 {% highlight console %}
@@ -239,7 +239,7 @@ Run `rails console` if you haven't already.
 {% endhighlight %}
 
 <a name="step4"></a>
-### Step 4: Build Associations between User and Post Models
+## Step 4: Build Associations between User and Post Models
 
 Generate Migration to Add Foreign Key to `Post` Model.
 {% highlight bash %}
@@ -290,7 +290,7 @@ The above code creates the relationship between `Post` and `User` models.  It ba
 
 Goign forward, you will likely see the `belongs_to` and `has_many` helper methods a lot when building models in Rails.
 
-Confirm associations in console:
+###Confirm associations in console:
 
 First, create a new user, 
 
@@ -326,5 +326,46 @@ Finally, confirm you can find User for given post (the other side of the relatio
 {% endhighlight %}
 
 <a name="step5"></a>
-### Step 5: Build Comments Model
+## Step 5: Build Comment Model
+
+Generate a Comment Model:
+
+{% highlight console %}
+jamies-air:micro-reddit jxberc$ rails generate model Comment body:text user:references post:references
+      invoke  active_record
+      create    db/migrate/20140502150931_create_comments.rb
+      create    app/models/comment.rb
+      invoke    test_unit
+      create      test/models/comment_test.rb
+      create      test/fixtures/comments.yml
+{% endhighlight %}
+
+Running the above command will create a migration file located in `db/migration` folder. See below:
+
+{% highlight Ruby %}
+class CreateComments < ActiveRecord::Migration
+  def change
+    create_table :comments do |t|
+      t.text :body
+      t.references :user, index: true
+      t.references :post, index: true
+
+      t.timestamps
+    end
+  end
+end
+
+{% endhighlight %}
+
+Run migration:
+{% highlight console %}
+jamies-air:micro-reddit jxberc$ rake db:migrate
+== 20140502150931 CreateComments: migrating ===================================
+-- create_table(:comments)
+   -> 0.0074s
+== 20140502150931 CreateComments: migrated (0.0074s) ==========================
+{% endhighlight %}
+
+<a name="step6"></a>
+##Step 6: Bulding Additional Assocations
 

@@ -98,7 +98,7 @@
   <span class="post-date">02 May 2014</span>
   <p>Estimated Time: 1 hr</p>
 
-<h3>Objective:</h3>
+<h2>Objective:</h2>
 
 <blockquote>
 <p>Let&#39;s build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you&#39;ll build the data structures necessary to support link submissions and commenting. We won&#39;t build a front end for it because we don&#39;t need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.</p>
@@ -110,15 +110,15 @@
 <li><a href="#step1">Create Rails App</a></li>
 <li><a href="#step2">Create User Model</a></li>
 <li><a href="#step3">Create Post Model</a></li>
-<li><a href="#step4">Build Associations between two models</a></li>
+<li><a href="#step4">Build Associations between User and Post models</a></li>
 <li><a href="#step5">Create Comment Model</a></li>
-<li>Build additional assocations</li>
+<li><a href="#step6">Build additional assocations</a></li>
 <li>Check valid associations in console</li>
 </ol>
 
 <p><a name="step1"></a></p>
 
-<h3>Step 1: Create Rails App</h3>
+<h2>Step 1: Create Rails App</h2>
 
 <p>Create a basic Rails app. Rails does all the heavy lifting. All you have to do is run
 the <code>rails new &lt;project name&gt;</code> command from your terminal, which creates a basic Rails directory structure with everything you need to run a simple app.</p>
@@ -154,7 +154,7 @@ the <code>rails new &lt;project name&gt;</code> command from your terminal, whic
 
 <p><a name="step2"></a></p>
 
-<h3>Step 2: Create a User Model</h3>
+<h2>Step 2: Create a User Model</h2>
 
 <p>From the command line, run:</p>
 
@@ -202,7 +202,7 @@ the <code>rails new &lt;project name&gt;</code> command from your terminal, whic
 
 <p>The <code>rake db:migrate</code> command should create a sql database in your <code>micro-reddit/db</code> folder.</p>
 
-<h4>Working with the Model in the Console</h4>
+<h3>Working with the Model in the Console</h3>
 
 <p>From command line, run:</p>
 
@@ -278,7 +278,7 @@ Reloading...
 
 <p><a name="step3"></a></p>
 
-<h3>Step 3: Create a Post Model</h3>
+<h2>Step 3: Create a Post Model</h2>
 
 <p>Generate new model <code>Post</code>:</p>
 
@@ -329,7 +329,7 @@ Reloading...
 
 <p><a name="step4"></a></p>
 
-<h3>Step 4: Build Associations between User and Post Models</h3>
+<h2>Step 4: Build Associations between User and Post Models</h2>
 
 <p>Generate Migration to Add Foreign Key to <code>Post</code> Model.</p>
 
@@ -376,7 +376,7 @@ Reloading...
 
 <p>Goign forward, you will likely see the <code>belongs_to</code> and <code>has_many</code> helper methods a lot when building models in Rails.</p>
 
-<p>Confirm associations in console:</p>
+<h3>Confirm associations in console:</h3>
 
 <p>First, create a new user, </p>
 
@@ -408,7 +408,46 @@ Reloading...
 
 <p><a name="step5"></a></p>
 
-<h3>Step 5: Build Comments Model</h3>
+<h2>Step 5: Build Comment Model</h2>
+
+<p>Generate a Comment Model:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails generate model Comment body:text user:references post:references
+<span class="go">      invoke  active_record</span>
+<span class="go">      create    db/migrate/20140502150931_create_comments.rb</span>
+<span class="go">      create    app/models/comment.rb</span>
+<span class="go">      invoke    test_unit</span>
+<span class="go">      create      test/models/comment_test.rb</span>
+<span class="go">      create      test/fixtures/comments.yml</span>
+</code></pre></div>
+
+<p>Running the above command will create a migration file located in <code>db/migration</code> folder. See below:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">CreateComments</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+    <span class="n">create_table</span> <span class="ss">:comments</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">text</span> <span class="ss">:body</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span> <span class="kp">true</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span> <span class="kp">true</span>
+
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Run migration:</p>
+
+<div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rake db:migrate
+<span class="go">== 20140502150931 CreateComments: migrating ===================================</span>
+<span class="go">-- create_table(:comments)</span>
+<span class="go">   -&gt; 0.0074s</span>
+<span class="go">== 20140502150931 CreateComments: migrated (0.0074s) ==========================</span>
+</code></pre></div>
+
+<p><a name="step6"></a></p>
+
+<h2>Step 6: Bulding Additional Assocations</h2>
 
 </div>
 

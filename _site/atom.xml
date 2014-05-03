@@ -4,7 +4,7 @@
  <title>The Odin Experience</title>
  <link href="http://jberczel.github.com/atom.xml" rel="self"/>
  <link href="http://jberczel.github.com/"/>
- <updated>2014-05-03T14:28:44-04:00</updated>
+ <updated>2014-05-03T14:52:02-04:00</updated>
  <id>http://jberczel.github.com</id>
  <author>
    <name>Jamie Berczel</name>
@@ -212,7 +212,7 @@
    <id>http://jberczel.github.com/my-micro-reddit</id>
    <content type="html">&lt;p&gt;Estimated Time: 1 hr&lt;/p&gt;
 
-&lt;h3&gt;Objective:&lt;/h3&gt;
+&lt;h2&gt;Objective:&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Let&amp;#39;s build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you&amp;#39;ll build the data structures necessary to support link submissions and commenting. We won&amp;#39;t build a front end for it because we don&amp;#39;t need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.&lt;/p&gt;
@@ -224,15 +224,15 @@
 &lt;li&gt;&lt;a href=&quot;#step1&quot;&gt;Create Rails App&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#step2&quot;&gt;Create User Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#step3&quot;&gt;Create Post Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#step4&quot;&gt;Build Associations between two models&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step4&quot;&gt;Build Associations between User and Post models&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#step5&quot;&gt;Create Comment Model&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Build additional assocations&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step6&quot;&gt;Build additional assocations&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Check valid associations in console&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;a name=&quot;step1&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Step 1: Create Rails App&lt;/h3&gt;
+&lt;h2&gt;Step 1: Create Rails App&lt;/h2&gt;
 
 &lt;p&gt;Create a basic Rails app. Rails does all the heavy lifting. All you have to do is run
 the &lt;code&gt;rails new &amp;lt;project name&amp;gt;&lt;/code&gt; command from your terminal, which creates a basic Rails directory structure with everything you need to run a simple app.&lt;/p&gt;
@@ -268,7 +268,7 @@ the &lt;code&gt;rails new &amp;lt;project name&amp;gt;&lt;/code&gt; command from
 
 &lt;p&gt;&lt;a name=&quot;step2&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Step 2: Create a User Model&lt;/h3&gt;
+&lt;h2&gt;Step 2: Create a User Model&lt;/h2&gt;
 
 &lt;p&gt;From the command line, run:&lt;/p&gt;
 
@@ -316,7 +316,7 @@ the &lt;code&gt;rails new &amp;lt;project name&amp;gt;&lt;/code&gt; command from
 
 &lt;p&gt;The &lt;code&gt;rake db:migrate&lt;/code&gt; command should create a sql database in your &lt;code&gt;micro-reddit/db&lt;/code&gt; folder.&lt;/p&gt;
 
-&lt;h4&gt;Working with the Model in the Console&lt;/h4&gt;
+&lt;h3&gt;Working with the Model in the Console&lt;/h3&gt;
 
 &lt;p&gt;From command line, run:&lt;/p&gt;
 
@@ -392,7 +392,7 @@ Reloading...
 
 &lt;p&gt;&lt;a name=&quot;step3&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Step 3: Create a Post Model&lt;/h3&gt;
+&lt;h2&gt;Step 3: Create a Post Model&lt;/h2&gt;
 
 &lt;p&gt;Generate new model &lt;code&gt;Post&lt;/code&gt;:&lt;/p&gt;
 
@@ -443,7 +443,7 @@ Reloading...
 
 &lt;p&gt;&lt;a name=&quot;step4&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Step 4: Build Associations between User and Post Models&lt;/h3&gt;
+&lt;h2&gt;Step 4: Build Associations between User and Post Models&lt;/h2&gt;
 
 &lt;p&gt;Generate Migration to Add Foreign Key to &lt;code&gt;Post&lt;/code&gt; Model.&lt;/p&gt;
 
@@ -490,7 +490,7 @@ Reloading...
 
 &lt;p&gt;Goign forward, you will likely see the &lt;code&gt;belongs_to&lt;/code&gt; and &lt;code&gt;has_many&lt;/code&gt; helper methods a lot when building models in Rails.&lt;/p&gt;
 
-&lt;p&gt;Confirm associations in console:&lt;/p&gt;
+&lt;h3&gt;Confirm associations in console:&lt;/h3&gt;
 
 &lt;p&gt;First, create a new user, &lt;/p&gt;
 
@@ -522,7 +522,46 @@ Reloading...
 
 &lt;p&gt;&lt;a name=&quot;step5&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;Step 5: Build Comments Model&lt;/h3&gt;
+&lt;h2&gt;Step 5: Build Comment Model&lt;/h2&gt;
+
+&lt;p&gt;Generate a Comment Model:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rails generate model Comment body:text user:references post:references
+&lt;span class=&quot;go&quot;&gt;      invoke  active_record&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create    db/migrate/20140502150931_create_comments.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create    app/models/comment.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      invoke    test_unit&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create      test/models/comment_test.rb&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;      create      test/fixtures/comments.yml&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Running the above command will create a migration file located in &lt;code&gt;db/migration&lt;/code&gt; folder. See below:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CreateComments&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Migration&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;change&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;create_table&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:comments&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:body&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;references&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;references&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;timestamps&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Run migration:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rake db:migrate
+&lt;span class=&quot;go&quot;&gt;== 20140502150931 CreateComments: migrating ===================================&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;-- create_table(:comments)&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;   -&amp;gt; 0.0074s&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;== 20140502150931 CreateComments: migrated (0.0074s) ==========================&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;step6&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Step 6: Bulding Additional Assocations&lt;/h2&gt;
 </content>
  </entry>
  
