@@ -4,7 +4,7 @@
  <title>The Odin Experience</title>
  <link href="http://jberczel.github.com/atom.xml" rel="self"/>
  <link href="http://jberczel.github.com/"/>
- <updated>2014-05-02T18:10:46-04:00</updated>
+ <updated>2014-05-02T21:24:59-04:00</updated>
  <id>http://jberczel.github.com</id>
  <author>
    <name>Jamie Berczel</name>
@@ -13,90 +13,27 @@
 
  
  <entry>
-   <title>Micro-Reddit walkthrough</title>
-   <link href="http://jberczel.github.com/micro-reddit-walkthrough"/>
-   <updated>2014-05-02T00:00:00-04:00</updated>
-   <id>http://jberczel.github.com/my-micro-reddit</id>
-   <content type="html">&lt;p&gt;Estimated Time: 1 hr 30 min&lt;/p&gt;
+   <title>What's Jekyll?</title>
+   <link href="http://jberczel.github.com/2014/05/02/2013-12-31-whats-jekyll/"/>
+   <updated>2014-05-02T21:18:33-04:00</updated>
+   <id>http://jberczel.github.com/2014/05/02/2013-12-31-whats-jekyll</id>
+   <content type="html">&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/mojombo/jekyll/blob/master/README.markdown&quot;&gt;the project&amp;#39;s readme&lt;/a&gt;:&lt;/p&gt;
 
-&lt;p&gt;Basic Steps:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory [...] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;ol&gt;
-&lt;li&gt;Create Rails App&lt;/li&gt;
-&lt;li&gt;Create User Model&lt;/li&gt;
-&lt;li&gt;Create Post Model&lt;/li&gt;
-&lt;li&gt;Build Associations between two models&lt;/li&gt;
-&lt;li&gt;Create Comment Model&lt;/li&gt;
-&lt;li&gt;Build additional assocations&lt;/li&gt;
-&lt;li&gt;Check valid associations in console&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;It&amp;#39;s an immensely useful tool and one we encourage you to use here with Hyde.&lt;/p&gt;
 
-&lt;h2&gt;Create Rails App&lt;/h2&gt;
-
-&lt;p&gt;From the command line:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:~ jxberc$&lt;/span&gt; rails new micro-reddit
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Ruby example:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>Introducing Lanyon</title>
-   <link href="http://jberczel.github.com/2014/01/02/introducing-lanyon/"/>
-   <updated>2014-01-02T00:00:00-05:00</updated>
-   <id>http://jberczel.github.com/2014/01/02/introducing-lanyon</id>
-   <content type="html">&lt;p&gt;Lanyon is an unassuming &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; theme that places content first by tucking away navigation in a hidden drawer. It&amp;#39;s based on &lt;a href=&quot;http://getpoole.com&quot;&gt;Poole&lt;/a&gt;, the Jekyll butler.&lt;/p&gt;
-
-&lt;h3&gt;Built on Poole&lt;/h3&gt;
-
-&lt;p&gt;Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by &lt;a href=&quot;https://twitter.com/mdo&quot;&gt;@mdo&lt;/a&gt;. Poole, and every theme built on it (like Lanyon here) includes the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Complete Jekyll setup included (layouts, config, &lt;a href=&quot;/404&quot;&gt;404&lt;/a&gt;, &lt;a href=&quot;/atom.xml&quot;&gt;RSS feed&lt;/a&gt;, posts, and &lt;a href=&quot;/about&quot;&gt;example page&lt;/a&gt;)&lt;/li&gt;
-&lt;li&gt;Mobile friendly design and development&lt;/li&gt;
-&lt;li&gt;Easily scalable text and component sizing with &lt;code&gt;rem&lt;/code&gt; units in the CSS&lt;/li&gt;
-&lt;li&gt;Support for a wide gamut of HTML elements&lt;/li&gt;
-&lt;li&gt;Related posts (time-based, because Jekyll) below each post&lt;/li&gt;
-&lt;li&gt;Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Lanyon features&lt;/h3&gt;
-
-&lt;p&gt;In addition to the features of Poole, Lanyon adds the following:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Toggleable sliding sidebar (built with only CSS) via &lt;strong&gt;☰&lt;/strong&gt; link in top corner&lt;/li&gt;
-&lt;li&gt;Sidebar includes support for textual modules and a dynamically generated navigation with active link support&lt;/li&gt;
-&lt;li&gt;Two orientations for content and sidebar, default (left sidebar) and &lt;a href=&quot;https://github.com/poole/lanyon#reverse-layout&quot;&gt;reverse&lt;/a&gt; (right sidebar), available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/poole/lanyon#themes&quot;&gt;Eight optional color schemes&lt;/a&gt;, available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/poole/lanyon#readme&quot;&gt;Head to the readme&lt;/a&gt; to learn more.&lt;/p&gt;
-
-&lt;h3&gt;Browser support&lt;/h3&gt;
-
-&lt;p&gt;Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.&lt;/p&gt;
-
-&lt;h3&gt;Download&lt;/h3&gt;
-
-&lt;p&gt;Lanyon is developed on and hosted with GitHub. Head to the &lt;a href=&quot;https://github.com/poole/lanyon&quot;&gt;GitHub repository&lt;/a&gt; for downloads, bug reports, and features requests.&lt;/p&gt;
-
-&lt;p&gt;Thanks!&lt;/p&gt;
+&lt;p&gt;Find out more by &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
 </content>
  </entry>
  
  <entry>
    <title>Example content</title>
-   <link href="http://jberczel.github.com/2014/01/01/example-content/"/>
-   <updated>2014-01-01T00:00:00-05:00</updated>
-   <id>http://jberczel.github.com/2014/01/01/example-content</id>
+   <link href="http://jberczel.github.com/2014/05/02/2014-01-01-example-content/"/>
+   <updated>2014-05-02T21:18:31-04:00</updated>
+   <id>http://jberczel.github.com/2014/05/02/2014-01-01-example-content</id>
    <content type="html">&lt;div class=&quot;message&quot;&gt;
   Howdy! This is an example blog post that shows several types of HTML content supported in this theme.
 &lt;/div&gt;
@@ -224,19 +161,107 @@
  </entry>
  
  <entry>
-   <title>What's Jekyll?</title>
-   <link href="http://jberczel.github.com/2013/12/31/whats-jekyll/"/>
-   <updated>2013-12-31T00:00:00-05:00</updated>
-   <id>http://jberczel.github.com/2013/12/31/whats-jekyll</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From &lt;a href=&quot;https://github.com/mojombo/jekyll/blob/master/README.markdown&quot;&gt;the project&amp;#39;s readme&lt;/a&gt;:&lt;/p&gt;
+   <title>Introducing Lanyon</title>
+   <link href="http://jberczel.github.com/2014/05/02/2014-01-02-introducing-lanyon/"/>
+   <updated>2014-05-02T21:18:29-04:00</updated>
+   <id>http://jberczel.github.com/2014/05/02/2014-01-02-introducing-lanyon</id>
+   <content type="html">&lt;p&gt;Lanyon is an unassuming &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; theme that places content first by tucking away navigation in a hidden drawer. It&amp;#39;s based on &lt;a href=&quot;http://getpoole.com&quot;&gt;Poole&lt;/a&gt;, the Jekyll butler.&lt;/p&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;Jekyll is a simple, blog aware, static site generator. It takes a template directory [...] and spits out a complete, static website suitable for serving with Apache or your favorite web server. This is also the engine behind GitHub Pages, which you can use to host your project’s page or blog right here from GitHub.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;h3&gt;Built on Poole&lt;/h3&gt;
 
-&lt;p&gt;It&amp;#39;s an immensely useful tool and one we encourage you to use here with Hyde.&lt;/p&gt;
+&lt;p&gt;Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by &lt;a href=&quot;https://twitter.com/mdo&quot;&gt;@mdo&lt;/a&gt;. Poole, and every theme built on it (like Lanyon here) includes the following:&lt;/p&gt;
 
-&lt;p&gt;Find out more by &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;visiting the project on GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Complete Jekyll setup included (layouts, config, &lt;a href=&quot;/404&quot;&gt;404&lt;/a&gt;, &lt;a href=&quot;/atom.xml&quot;&gt;RSS feed&lt;/a&gt;, posts, and &lt;a href=&quot;/about&quot;&gt;example page&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Mobile friendly design and development&lt;/li&gt;
+&lt;li&gt;Easily scalable text and component sizing with &lt;code&gt;rem&lt;/code&gt; units in the CSS&lt;/li&gt;
+&lt;li&gt;Support for a wide gamut of HTML elements&lt;/li&gt;
+&lt;li&gt;Related posts (time-based, because Jekyll) below each post&lt;/li&gt;
+&lt;li&gt;Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Lanyon features&lt;/h3&gt;
+
+&lt;p&gt;In addition to the features of Poole, Lanyon adds the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Toggleable sliding sidebar (built with only CSS) via &lt;strong&gt;☰&lt;/strong&gt; link in top corner&lt;/li&gt;
+&lt;li&gt;Sidebar includes support for textual modules and a dynamically generated navigation with active link support&lt;/li&gt;
+&lt;li&gt;Two orientations for content and sidebar, default (left sidebar) and &lt;a href=&quot;https://github.com/poole/lanyon#reverse-layout&quot;&gt;reverse&lt;/a&gt; (right sidebar), available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/poole/lanyon#themes&quot;&gt;Eight optional color schemes&lt;/a&gt;, available via &lt;code&gt;&amp;lt;body&amp;gt;&lt;/code&gt; classes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/poole/lanyon#readme&quot;&gt;Head to the readme&lt;/a&gt; to learn more.&lt;/p&gt;
+
+&lt;h3&gt;Browser support&lt;/h3&gt;
+
+&lt;p&gt;Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.&lt;/p&gt;
+
+&lt;h3&gt;Download&lt;/h3&gt;
+
+&lt;p&gt;Lanyon is developed on and hosted with GitHub. Head to the &lt;a href=&quot;https://github.com/poole/lanyon&quot;&gt;GitHub repository&lt;/a&gt; for downloads, bug reports, and features requests.&lt;/p&gt;
+
+&lt;p&gt;Thanks!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Micro-Reddit walkthrough</title>
+   <link href="http://jberczel.github.com/micro-reddit-walkthrough"/>
+   <updated>2014-05-02T00:00:00-04:00</updated>
+   <id>http://jberczel.github.com/my-micro-reddit</id>
+   <content type="html">&lt;p&gt;Estimated Time: 1 hr 30 min&lt;/p&gt;
+
+&lt;p&gt;Basic Steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create Rails App&lt;/li&gt;
+&lt;li&gt;Create User Model&lt;/li&gt;
+&lt;li&gt;Create Post Model&lt;/li&gt;
+&lt;li&gt;Build Associations between two models&lt;/li&gt;
+&lt;li&gt;Create Comment Model&lt;/li&gt;
+&lt;li&gt;Build additional assocations&lt;/li&gt;
+&lt;li&gt;Check valid associations in console&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;Create Rails App&lt;/h2&gt;
+
+&lt;p&gt;From the command line:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:~ jxberc$&lt;/span&gt; rails new micro-reddit
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ruby example:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Welcome to Valhalla</title>
+   <link href="http://jberczel.github.com/welcome-to-valhalla"/>
+   <updated>2014-05-01T00:00:00-04:00</updated>
+   <id>http://jberczel.github.com/welcome-to-valhalla</id>
+   <content type="html">&lt;p&gt;I am currently working on projects in the &lt;a href=&quot;http://www.theodinproject.com/home&quot;&gt;Odin curriculum&lt;/a&gt;. &lt;/p&gt;
+
+&lt;p&gt;I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and future berserkers who get stuck and frustrated to the point of madness.&lt;/p&gt;
+
+&lt;p&gt;This website is hosted on github pages and generated with jekyll and poole.&lt;/p&gt;
+
+&lt;h3&gt;The Tools:&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://pages.github.com/&quot;&gt;Github pages&lt;/a&gt; - host directly from your GitHub repository. Just edit, push, and your changes are live.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; - blog using beautiful Markdown syntax, and without having to deal with any databases.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://getpoole.com/&quot;&gt;Poole&lt;/a&gt; - provides a clear and concise foundational setup for any Jekyll site. It does so by furnishing a full vanilla Jekyll install with example templates, pages, posts, and styles.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Build your own github and jekyll website&lt;/h3&gt;
+
+&lt;p&gt;Read a great step-by-step guide &lt;a href=&quot;http://joshualande.com/jekyll-github-pages-poole/&quot;&gt;here&lt;/a&gt;. It took me an afternoon to get it set up with disqus comments.&lt;/p&gt;
 </content>
  </entry>
  
