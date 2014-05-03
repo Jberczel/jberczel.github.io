@@ -4,7 +4,7 @@
  <title>The Odin Experience</title>
  <link href="http://jberczel.github.com/atom.xml" rel="self"/>
  <link href="http://jberczel.github.com/"/>
- <updated>2014-05-03T14:22:42-04:00</updated>
+ <updated>2014-05-03T14:26:56-04:00</updated>
  <id>http://jberczel.github.com</id>
  <author>
    <name>Jamie Berczel</name>
@@ -533,9 +533,7 @@ Reloading...
    <id>http://jberczel.github.com/welcome-to-valhalla</id>
    <content type="html">&lt;p&gt;I am currently working on projects in the &lt;a href=&quot;http://www.theodinproject.com/home&quot;&gt;Odin curriculum&lt;/a&gt;. &lt;/p&gt;
 
-&lt;p&gt;I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and future berserkers who get stuck and frustrated to the point of madness.&lt;/p&gt;
-
-&lt;p&gt;It took me an afternoon to get the website set up and deployed. It is hosted on github pages and generated with jekyll and poole.&lt;/p&gt;
+&lt;p&gt;I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and other students who get stuck and frustrated to the point of madness.&lt;/p&gt;
 
 &lt;h3&gt;The Tools:&lt;/h3&gt;
 
@@ -547,7 +545,7 @@ Reloading...
 
 &lt;h3&gt;Build your own github and jekyll website&lt;/h3&gt;
 
-&lt;p&gt;Read a great step-by-step guide &lt;a href=&quot;http://joshualande.com/jekyll-github-pages-poole/&quot;&gt;here&lt;/a&gt;. It took me an afternoon to get it set up with disqus comments.&lt;/p&gt;
+&lt;p&gt;Read a great step-by-step guide &lt;a href=&quot;http://joshualande.com/jekyll-github-pages-poole/&quot;&gt;here&lt;/a&gt;. It took me an afternoon to get it set up and deployed with disqus comments.&lt;/p&gt;
 </content>
  </entry>
  

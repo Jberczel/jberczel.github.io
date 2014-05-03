@@ -7,9 +7,7 @@ permalink: build-a-minimalist-blog
 
 I am currently working on projects in the [Odin curriculum](http://www.theodinproject.com/home). 
 
-I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and future berserkers who get stuck and frustrated to the point of madness.
-
-It took me an afternoon to get the website set up and deployed. It is hosted on github pages and generated with jekyll and poole.
+I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and other students who get stuck and frustrated to the point of madness.
 
 ###The Tools:
 
@@ -19,7 +17,7 @@ It took me an afternoon to get the website set up and deployed. It is hosted on 
 
 ###Build your own github and jekyll website
 
-Read a great step-by-step guide [here](http://joshualande.com/jekyll-github-pages-poole/). It took me an afternoon to get it set up with disqus comments.
+Read a great step-by-step guide [here](http://joshualande.com/jekyll-github-pages-poole/). It took me an afternoon to get it set up and deployed with disqus comments.
 
 
 
