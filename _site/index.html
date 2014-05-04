@@ -10,7 +10,7 @@
 
   <title>
     
-      The Odin Experience &middot; One student's notes on the Odin Curriculum
+      Valhalla retreat &middot; One student's notes on the Odin Curriculum
     
   </title>
 
@@ -86,7 +86,7 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">The Odin Experience</a>
+            <a href="/" title="Home">Valhalla retreat</a>
             <small>One student's notes on the Odin Curriculum</small>
           </h3>
         </div>
@@ -311,6 +311,10 @@
 
     <p>Estimated Time: 1 hr</p>
 
+<div class="message">
+<b>Disclaimer:</b> This is my implementation of an Odin Project for reference. I'm not a Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is completely wrong, please feel free to contact me in the comments.
+</div>
+
 <h2>Objective:</h2>
 
 <blockquote>
@@ -326,7 +330,8 @@
 <li><a href="#step4">Build Associations between User and Post models</a></li>
 <li><a href="#step5">Create Comment Model</a></li>
 <li><a href="#step6">Build additional assocations</a></li>
-<li>Check valid associations in console</li>
+<li><a href="#step7">Add Validations to Comment Model</a></li>
+<li><a href="#step8">Check Associations in Console</a></li>
 </ol>
 
 <p><a name="step1"></a></p>
@@ -447,7 +452,7 @@ the <code>rails new &lt;project name&gt;</code> command from your terminal, whic
 
 <div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
   <span class="n">validates</span> <span class="ss">:username</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">uniqueness</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span>
-            <span class="ss">length</span><span class="p">:</span> <span class="p">{</span> <span class="ss">minimum</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="ss">maximum</span><span class="p">:</span> <span class="mi">26</span> <span class="p">}</span>
+            <span class="ss">length</span><span class="p">:</span> <span class="p">{</span> <span class="ss">maximum</span><span class="p">:</span> <span class="mi">20</span> <span class="p">}</span>
 <span class="k">end</span>
 </code></pre></div>
 
@@ -623,7 +628,7 @@ Reloading...
 
 <h2>Step 5: Build Comment Model</h2>
 
-<p>Generate a Comment Model:</p>
+<p>Generate a <code>Comment</code> Model:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails generate model Comment body:text user:references post:references
 <span class="go">      invoke  active_record</span>
@@ -661,6 +666,136 @@ Reloading...
 <p><a name="step6"></a></p>
 
 <h2>Step 6: Bulding Additional Assocations</h2>
+
+<p>In the <code>app/models</code> folder, update associations for each of the models:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Comment</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">belongs_to</span> <span class="ss">:post</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+  <span class="n">has_many</span> <span class="ss">:posts</span>
+  <span class="n">has_many</span> <span class="ss">:comments</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>  
+  <span class="n">belongs_to</span> <span class="ss">:user</span> 
+  <span class="n">has_many</span> <span class="ss">:comments</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p><a name="step7"></a></p>
+
+<h2>Step 7: Add Validations to Comment Model</h2>
+
+<p>We&#39;re adding validaitons to the Comment model, so we don&#39;t accidently create comments with no associated User or Post.</p>
+
+<p>In the file <code>app/models/comment.rb</code>, include validations:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Comment</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">belongs_to</span> <span class="ss">:user</span>
+  <span class="n">belongs_to</span> <span class="ss">:post</span>
+  <span class="n">validates</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span><span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span><span class="kp">true</span>
+  <span class="n">validates</span> <span class="ss">:body</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span><span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>By validating <code>:user</code> and <code>:post</code>, we validate based on associated objects. Another way is to validate 
+using the foreign keys: <code>:user_id</code> and <code>post_id</code>, but I&#39;ve read this is not as robust as the above validations.</p>
+
+<p>Validating <code>:user</code> and <code>:post</code> will check that associated object exists, while validating on foreign key will only check that a key was entered, but not whether that <code>:user_id</code> or <code>:post_id</code> actually exist in the other models.</p>
+
+<p>Let&#39;s test in the console:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :049 &gt; <span class="nv">c</span> <span class="o">=</span> Comment.new<span class="o">(</span>body: <span class="s2">&quot;I enjoyed your post!&quot;</span><span class="o">)</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;Comment id: nil, body: &quot;I enjoyed your post!&quot;, user_id: nil, post_id: nil, created_at: nil, updated_at: nil&gt;</span>
+2.0.0-p451 :050 &gt; c.save
+   <span class="o">(</span>0.1ms<span class="o">)</span>  begin transaction
+   <span class="o">(</span>0.1ms<span class="o">)</span>  rollback <span class="nv">transaction</span>
+ <span class="o">=</span>&gt; <span class="nb">false</span>
+2.0.0-p451 :051 &gt; c.errors.full_messages
+ <span class="o">=</span>&gt; <span class="o">[</span><span class="s2">&quot;User can&#39;t be blank&quot;</span>, <span class="s2">&quot;Post can&#39;t be blank&quot;</span><span class="o">]</span>
+</code></pre></div>
+
+<p>First, I create a new comment with <code>:body</code> argument and try to save.  I cannot save, lets check the <code>errors.full_messages</code>.</p>
+
+<p>Next, add a<code>user_id</code> and <code>post_id</code> to your comment.  They need to already exist in your User and Post models:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :052 &gt; c.user_id <span class="o">=</span> <span class="nv">5</span>
+ <span class="o">=</span>&gt; 5
+2.0.0-p451 :053 &gt; c.post_id <span class="o">=</span> <span class="nv">4</span>
+ <span class="o">=</span>&gt; 4
+2.0.0-p451 :054 &gt; c.save
+   <span class="o">(</span>0.1ms<span class="o">)</span>  begin transaction
+  User Load <span class="o">(</span>0.2ms<span class="o">)</span>  SELECT <span class="s2">&quot;users&quot;</span>.* FROM <span class="s2">&quot;users&quot;</span> WHERE <span class="s2">&quot;users&quot;</span>.<span class="s2">&quot;id&quot;</span> <span class="o">=</span> ? LIMIT 1  <span class="o">[[</span><span class="s2">&quot;id&quot;</span>, 5<span class="o">]]</span>
+  Post Load <span class="o">(</span>0.1ms<span class="o">)</span>  SELECT <span class="s2">&quot;posts&quot;</span>.* FROM <span class="s2">&quot;posts&quot;</span> WHERE <span class="s2">&quot;posts&quot;</span>.<span class="s2">&quot;id&quot;</span> <span class="o">=</span> ? LIMIT 1  <span class="o">[[</span><span class="s2">&quot;id&quot;</span>, 4<span class="o">]]</span>
+  SQL <span class="o">(</span>1.0ms<span class="o">)</span>  INSERT INTO <span class="s2">&quot;comments&quot;</span> <span class="o">(</span><span class="s2">&quot;body&quot;</span>, <span class="s2">&quot;created_at&quot;</span>, <span class="s2">&quot;post_id&quot;</span>, <span class="s2">&quot;updated_at&quot;</span>, <span class="s2">&quot;user_id&quot;</span><span class="o">)</span> VALUES <span class="o">(</span>?, ?, ?, ?, ?<span class="o">)</span>  <span class="o">[[</span><span class="s2">&quot;body&quot;</span>, <span class="s2">&quot;I enjoyed your post!&quot;</span><span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;created_at&quot;</span>, Sun, 04 May 2014 21:08:34 UTC +00:00<span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;post_id&quot;</span>, 4<span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;updated_at&quot;</span>, Sun, 04 May 2014 21:08:34 UTC +00:00<span class="o">]</span>, <span class="o">[</span><span class="s2">&quot;user_id&quot;</span>, 5<span class="o">]]</span>
+   <span class="o">(</span>1.7ms<span class="o">)</span>  commit <span class="nv">transaction</span>
+ <span class="o">=</span>&gt; <span class="nb">true</span>
+</code></pre></div>
+
+<p>It looks like it is now a valid comment.  Also check to make sure you cannot create a comment with invalid <code>user_id</code> and <code>post_id</code>.</p>
+
+<p>Lastly, check to see if you can find comments from User and Post objects:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :056 &gt; <span class="nv">u</span> <span class="o">=</span> User.find<span class="o">(</span>5<span class="o">)</span>.comments
+ ...
+ <span class="o">=</span>&gt; <span class="c">#&lt;ActiveRecord::Associations::CollectionProxy [#&lt;Comment id: 3, body: &quot;another comment&quot;, user_id: 5, post_id: 4, created_at: &quot;2014-05-04 20:43:47&quot;, updated_at: &quot;2014-05-04 20:43:47&quot;&gt;, #&lt;Comment id: 4, body: &quot;I enjoyed your post!&quot;, user_id: 5, post_id: 4, created_at: &quot;2014-05-04 21:08:34&quot;, updated_at: &quot;2014-05-04 21:08:34&quot;&gt;]&gt;</span>
+2.0.0-p451 :057 &gt; <span class="nv">p</span> <span class="o">=</span> Post.find<span class="o">(</span>4<span class="o">)</span>.comments
+ ...
+ <span class="o">=</span>&gt; <span class="c">#&lt;ActiveRecord::Associations::CollectionProxy [#&lt;Comment id: 3, body: &quot;another comment&quot;, user_id: 5, post_id: 4, created_at: &quot;2014-05-04 20:43:47&quot;, updated_at: &quot;2014-05-04 20:43:47&quot;&gt;, #&lt;Comment id: 4, body: &quot;I enjoyed your post!&quot;, user_id: 5, post_id: 4, created_at: &quot;2014-05-04 21:08:34&quot;, updated_at: &quot;2014-05-04 21:08:34&quot;&gt;]&gt;</span>
+</code></pre></div>
+
+<p><a name="step8"></a></p>
+
+<h2>Step 8: Check valid associations in Console</h2>
+
+<p>This is a final run-through to make sure the associations between the  <code>User</code>, <code>Post</code>, and <code>Comment</code> models are working as we expect.</p>
+
+<p>My tables should be different than yours, so play around with your sample data and make sure you can return similiar results:</p>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :067 &gt; <span class="nv">u</span> <span class="o">=</span> User.find<span class="o">(</span>5<span class="o">)</span>
+  User Load <span class="o">(</span>0.1ms<span class="o">)</span>  SELECT <span class="s2">&quot;users&quot;</span>.* FROM <span class="s2">&quot;users&quot;</span> WHERE <span class="s2">&quot;users&quot;</span>.<span class="s2">&quot;id&quot;</span> <span class="o">=</span> ? LIMIT 1  <span class="o">[[</span><span class="s2">&quot;id&quot;</span>, 5<span class="o">]]</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: 5, username: &quot;Odin&quot;, email: &quot;odin@email.com&quot;, password: &quot;foobar&quot;, created_at: &quot;2014-05-03 18:02:23&quot;, updated_at: &quot;2014-05-03 18:02:23&quot;&gt;</span>
+ 
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :068 &gt; <span class="nv">c</span> <span class="o">=</span> u.comments.last
+  Comment Load <span class="o">(</span>0.2ms<span class="o">)</span>  SELECT <span class="s2">&quot;comments&quot;</span>.* FROM <span class="s2">&quot;comments&quot;</span> WHERE <span class="s2">&quot;comments&quot;</span>.<span class="s2">&quot;user_id&quot;</span> <span class="o">=</span> ? ORDER BY <span class="s2">&quot;comments&quot;</span>.<span class="s2">&quot;id&quot;</span> DESC LIMIT 1  <span class="o">[[</span><span class="s2">&quot;user_id&quot;</span>, 5<span class="o">]]</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;Comment id: 4, body: &quot;I enjoyed your post!&quot;, user_id: 5, post_id: 4, created_at: &quot;2014-05-04 21:08:34&quot;, updated_at: &quot;2014-05-04 21:08:34&quot;&gt;</span>
+  
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :069 &gt; c.user
+  User Load <span class="o">(</span>0.1ms<span class="o">)</span>  SELECT <span class="s2">&quot;users&quot;</span>.* FROM <span class="s2">&quot;users&quot;</span> WHERE <span class="s2">&quot;users&quot;</span>.<span class="s2">&quot;id&quot;</span> <span class="o">=</span> ? LIMIT 1  <span class="o">[[</span><span class="s2">&quot;id&quot;</span>, 5<span class="o">]]</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;User id: 5, username: &quot;Odin&quot;, email: &quot;odin@email.com&quot;, password: &quot;foobar&quot;, created_at: &quot;2014-05-03 18:02:23&quot;, updated_at: &quot;2014-05-03 18:02:23&quot;&gt;</span>
+  
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :070 &gt; <span class="nv">p</span> <span class="o">=</span> Post.first
+  Post Load <span class="o">(</span>0.3ms<span class="o">)</span>  SELECT <span class="s2">&quot;posts&quot;</span>.* FROM <span class="s2">&quot;posts&quot;</span> ORDER BY <span class="s2">&quot;posts&quot;</span>.<span class="s2">&quot;id&quot;</span> ASC LIMIT <span class="nv">1</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;Post id: 4, title: &quot;A New Post&quot;, body: &quot;A post by Odin himself.&quot;, created_at: &quot;2014-05-03 18:03:16&quot;, updated_at: &quot;2014-05-03 18:03:16&quot;, user_id: 5&gt;</span>
+  
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :071 &gt; p.comments.first
+  Comment Load <span class="o">(</span>0.3ms<span class="o">)</span>  SELECT <span class="s2">&quot;comments&quot;</span>.* FROM <span class="s2">&quot;comments&quot;</span> WHERE <span class="s2">&quot;comments&quot;</span>.<span class="s2">&quot;post_id&quot;</span> <span class="o">=</span> ? ORDER BY <span class="s2">&quot;comments&quot;</span>.<span class="s2">&quot;id&quot;</span> ASC LIMIT 1  <span class="o">[[</span><span class="s2">&quot;post_id&quot;</span>, 4<span class="o">]]</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;Comment id: 3, body: &quot;another comment&quot;, user_id: 5, post_id: 4, created_at: &quot;2014-05-04 20:43:47&quot;, updated_at: &quot;2014-05-04 20:43:47&quot;&gt;</span>
+  
+</code></pre></div>
+
+<div class="highlight"><pre><code class="bash">2.0.0-p451 :072 &gt; c.post
+  Post Load <span class="o">(</span>0.1ms<span class="o">)</span>  SELECT <span class="s2">&quot;posts&quot;</span>.* FROM <span class="s2">&quot;posts&quot;</span> WHERE <span class="s2">&quot;posts&quot;</span>.<span class="s2">&quot;id&quot;</span> <span class="o">=</span> ? LIMIT 1  <span class="o">[[</span><span class="s2">&quot;id&quot;</span>, 4<span class="o">]]</span>
+ <span class="o">=</span>&gt; <span class="c">#&lt;Post id: 4, title: &quot;A New Post&quot;, body: &quot;A post by Odin himself.&quot;, created_at: &quot;2014-05-03 18:03:16&quot;, updated_at: &quot;2014-05-03 18:03:16&quot;, user_id: 5&gt;</span>
+  
+</code></pre></div>
 
   </div>
   

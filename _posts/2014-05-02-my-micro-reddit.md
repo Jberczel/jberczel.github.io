@@ -7,6 +7,11 @@ permalink: micro-reddit-walkthrough
 
 Estimated Time: 1 hr
 
+<div class="message">
+<b>Disclaimer:</b> This is my implementation of an Odin Project for reference. I'm not a Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is completely wrong, please feel free to contact me in the comments.
+</div>
+
+
 ##Objective:
 > Let's build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you'll build the data structures necessary to support link submissions and commenting. We won't build a front end for it because we don't need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.
 
@@ -18,7 +23,8 @@ Basic Steps:
 4. [Build Associations between User and Post models](#step4)
 5. [Create Comment Model](#step5)
 6. [Build additional assocations](#step6)
-7. Check valid associations in console
+7. [Add Validations to Comment Model](#step7)
+8. [Check Associations in Console](#step8)
 
 <a name="step1"></a>
 ## Step 1: Create Rails App
@@ -141,7 +147,7 @@ It's currently valid because we have no validations.  We don't want to accidentl
 {% highlight ruby %}
 class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true,
-            length: { minimum: 6, maximum: 26 }
+            length: { maximum: 20 }
 end
 
 {% endhighlight %}
@@ -328,7 +334,7 @@ Finally, confirm you can find User for given post (the other side of the relatio
 <a name="step5"></a>
 ## Step 5: Build Comment Model
 
-Generate a Comment Model:
+Generate a `Comment` Model:
 
 {% highlight console %}
 jamies-air:micro-reddit jxberc$ rails generate model Comment body:text user:references post:references
@@ -368,4 +374,147 @@ jamies-air:micro-reddit jxberc$ rake db:migrate
 
 <a name="step6"></a>
 ##Step 6: Bulding Additional Assocations
+
+In the `app/models` folder, update associations for each of the models:
+
+{% highlight ruby %}
+class Comment < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :post
+  ...
+end
+{% endhighlight %}
+
+{% highlight ruby %}
+class User < ActiveRecord::Base
+  ...
+  has_many :posts
+  has_many :comments
+end
+{% endhighlight %}
+
+{% highlight ruby %}
+class Post < ActiveRecord::Base
+  ...  
+  belongs_to :user 
+  has_many :comments
+end
+{% endhighlight %}
+
+<a name="step7"></a>
+##Step 7: Add Validations to Comment Model
+
+We're adding validaitons to the Comment model, so we don't accidently create comments with no associated User or Post.
+
+In the file `app/models/comment.rb`, include validations:
+
+{% highlight ruby %}
+class Comment < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :post
+  validates :user, presence:true
+  validates :post, presence:true
+  validates :body, presence:true
+end
+{% endhighlight %}
+
+By validating `:user` and `:post`, we validate based on associated objects. Another way is to validate 
+using the foreign keys: `:user_id` and `post_id`, but I've read this is not as robust as the above validations.
+
+Validating `:user` and `:post` will check that associated object exists, while validating on foreign key will only check that a key was entered, but not whether that `:user_id` or `:post_id` actually exist in the other models.
+
+Let's test in the console:
+
+{% highlight bash %}
+2.0.0-p451 :049 > c = Comment.new(body: "I enjoyed your post!")
+ => #<Comment id: nil, body: "I enjoyed your post!", user_id: nil, post_id: nil, created_at: nil, updated_at: nil>
+2.0.0-p451 :050 > c.save
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => false
+2.0.0-p451 :051 > c.errors.full_messages
+ => ["User can't be blank", "Post can't be blank"]
+{% endhighlight %}
+
+First, I create a new comment with `:body` argument and try to save.  I cannot save, lets check the `errors.full_messages`.
+
+Next, add a`user_id` and `post_id` to your comment.  They need to already exist in your User and Post models:
+
+{% highlight bash %}
+
+2.0.0-p451 :052 > c.user_id = 5
+ => 5
+2.0.0-p451 :053 > c.post_id = 4
+ => 4
+2.0.0-p451 :054 > c.save
+   (0.1ms)  begin transaction
+  User Load (0.2ms)  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 5]]
+  Post Load (0.1ms)  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 4]]
+  SQL (1.0ms)  INSERT INTO "comments" ("body", "created_at", "post_id", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)  [["body", "I enjoyed your post!"], ["created_at", Sun, 04 May 2014 21:08:34 UTC +00:00], ["post_id", 4], ["updated_at", Sun, 04 May 2014 21:08:34 UTC +00:00], ["user_id", 5]]
+   (1.7ms)  commit transaction
+ => true
+{% endhighlight %}
+
+It looks like it is now a valid comment.  Also check to make sure you cannot create a comment with invalid `user_id` and `post_id`.
+
+Lastly, check to see if you can find comments from User and Post objects:
+
+{% highlight bash %}
+2.0.0-p451 :056 > u = User.find(5).comments
+ ...
+ => #<ActiveRecord::Associations::CollectionProxy [#<Comment id: 3, body: "another comment", user_id: 5, post_id: 4, created_at: "2014-05-04 20:43:47", updated_at: "2014-05-04 20:43:47">, #<Comment id: 4, body: "I enjoyed your post!", user_id: 5, post_id: 4, created_at: "2014-05-04 21:08:34", updated_at: "2014-05-04 21:08:34">]>
+2.0.0-p451 :057 > p = Post.find(4).comments
+ ...
+ => #<ActiveRecord::Associations::CollectionProxy [#<Comment id: 3, body: "another comment", user_id: 5, post_id: 4, created_at: "2014-05-04 20:43:47", updated_at: "2014-05-04 20:43:47">, #<Comment id: 4, body: "I enjoyed your post!", user_id: 5, post_id: 4, created_at: "2014-05-04 21:08:34", updated_at: "2014-05-04 21:08:34">]>
+{% endhighlight %}
+
+<a name="step8"></a>
+##Step 8: Check valid associations in Console
+
+This is a final run-through to make sure the associations between the  `User`, `Post`, and `Comment` models are working as we expect.
+
+My tables should be different than yours, so play around with your sample data and make sure you can return similiar results:
+
+{% highlight bash %}
+2.0.0-p451 :067 > u = User.find(5)
+  User Load (0.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 5]]
+ => #<User id: 5, username: "Odin", email: "odin@email.com", password: "foobar", created_at: "2014-05-03 18:02:23", updated_at: "2014-05-03 18:02:23">
+ {% endhighlight %}
+
+ {% highlight bash %}
+2.0.0-p451 :068 > c = u.comments.last
+  Comment Load (0.2ms)  SELECT "comments".* FROM "comments" WHERE "comments"."user_id" = ? ORDER BY "comments"."id" DESC LIMIT 1  [["user_id", 5]]
+ => #<Comment id: 4, body: "I enjoyed your post!", user_id: 5, post_id: 4, created_at: "2014-05-04 21:08:34", updated_at: "2014-05-04 21:08:34">
+  {% endhighlight %}
+
+ {% highlight bash %}
+2.0.0-p451 :069 > c.user
+  User Load (0.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 5]]
+ => #<User id: 5, username: "Odin", email: "odin@email.com", password: "foobar", created_at: "2014-05-03 18:02:23", updated_at: "2014-05-03 18:02:23">
+  {% endhighlight %}
+
+  {% highlight bash %}
+2.0.0-p451 :070 > p = Post.first
+  Post Load (0.3ms)  SELECT "posts".* FROM "posts" ORDER BY "posts"."id" ASC LIMIT 1
+ => #<Post id: 4, title: "A New Post", body: "A post by Odin himself.", created_at: "2014-05-03 18:03:16", updated_at: "2014-05-03 18:03:16", user_id: 5>
+  {% endhighlight %}
+
+ {% highlight bash %}
+2.0.0-p451 :071 > p.comments.first
+  Comment Load (0.3ms)  SELECT "comments".* FROM "comments" WHERE "comments"."post_id" = ? ORDER BY "comments"."id" ASC LIMIT 1  [["post_id", 4]]
+ => #<Comment id: 3, body: "another comment", user_id: 5, post_id: 4, created_at: "2014-05-04 20:43:47", updated_at: "2014-05-04 20:43:47">
+  {% endhighlight %}
+
+{% highlight bash %}
+2.0.0-p451 :072 > c.post
+  Post Load (0.1ms)  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 4]]
+ => #<Post id: 4, title: "A New Post", body: "A post by Odin himself.", created_at: "2014-05-03 18:03:16", updated_at: "2014-05-03 18:03:16", user_id: 5>
+  {% endhighlight %}
+
+
+
+
+
+
+
 

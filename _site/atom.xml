@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>The Odin Experience</title>
+ <title>Valhalla retreat</title>
  <link href="http://jberczel.github.com/atom.xml" rel="self"/>
  <link href="http://jberczel.github.com/"/>
- <updated>2014-05-03T14:52:02-04:00</updated>
+ <updated>2014-05-04T17:58:09-04:00</updated>
  <id>http://jberczel.github.com</id>
  <author>
    <name>Jamie Berczel</name>
@@ -212,6 +212,10 @@
    <id>http://jberczel.github.com/my-micro-reddit</id>
    <content type="html">&lt;p&gt;Estimated Time: 1 hr&lt;/p&gt;
 
+&lt;div class=&quot;message&quot;&gt;
+&lt;b&gt;Disclaimer:&lt;/b&gt; This is my implementation of an Odin Project for reference. I&#39;m not a Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is completely wrong, please feel free to contact me in the comments.
+&lt;/div&gt;
+
 &lt;h2&gt;Objective:&lt;/h2&gt;
 
 &lt;blockquote&gt;
@@ -227,7 +231,8 @@
 &lt;li&gt;&lt;a href=&quot;#step4&quot;&gt;Build Associations between User and Post models&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#step5&quot;&gt;Create Comment Model&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;#step6&quot;&gt;Build additional assocations&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Check valid associations in console&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step7&quot;&gt;Add Validations to Comment Model&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#step8&quot;&gt;Check Associations in Console&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;&lt;a name=&quot;step1&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -348,7 +353,7 @@ the &lt;code&gt;rails new &amp;lt;project name&amp;gt;&lt;/code&gt; command from
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:username&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;uniqueness&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-            &lt;span class=&quot;ss&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;minimum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;maximum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;ss&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;maximum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
@@ -524,7 +529,7 @@ Reloading...
 
 &lt;h2&gt;Step 5: Build Comment Model&lt;/h2&gt;
 
-&lt;p&gt;Generate a Comment Model:&lt;/p&gt;
+&lt;p&gt;Generate a &lt;code&gt;Comment&lt;/code&gt; Model:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;jamies-air:micro-reddit jxberc$&lt;/span&gt; rails generate model Comment body:text user:references post:references
 &lt;span class=&quot;go&quot;&gt;      invoke  active_record&lt;/span&gt;
@@ -562,6 +567,136 @@ Reloading...
 &lt;p&gt;&lt;a name=&quot;step6&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Step 6: Bulding Additional Assocations&lt;/h2&gt;
+
+&lt;p&gt;In the &lt;code&gt;app/models&lt;/code&gt; folder, update associations for each of the models:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Comment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:posts&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:comments&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Post&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;  
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt; 
+  &lt;span class=&quot;n&quot;&gt;has_many&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:comments&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;step7&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Step 7: Add Validations to Comment Model&lt;/h2&gt;
+
+&lt;p&gt;We&amp;#39;re adding validaitons to the Comment model, so we don&amp;#39;t accidently create comments with no associated User or Post.&lt;/p&gt;
+
+&lt;p&gt;In the file &lt;code&gt;app/models/comment.rb&lt;/code&gt;, include validations:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Comment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ActiveRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Base&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;belongs_to&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;validates&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;presence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;By validating &lt;code&gt;:user&lt;/code&gt; and &lt;code&gt;:post&lt;/code&gt;, we validate based on associated objects. Another way is to validate 
+using the foreign keys: &lt;code&gt;:user_id&lt;/code&gt; and &lt;code&gt;post_id&lt;/code&gt;, but I&amp;#39;ve read this is not as robust as the above validations.&lt;/p&gt;
+
+&lt;p&gt;Validating &lt;code&gt;:user&lt;/code&gt; and &lt;code&gt;:post&lt;/code&gt; will check that associated object exists, while validating on foreign key will only check that a key was entered, but not whether that &lt;code&gt;:user_id&lt;/code&gt; or &lt;code&gt;:post_id&lt;/code&gt; actually exist in the other models.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s test in the console:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :049 &amp;gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Comment.new&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;body: &lt;span class=&quot;s2&quot;&gt;&amp;quot;I enjoyed your post!&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Comment id: nil, body: &amp;quot;I enjoyed your post!&amp;quot;, user_id: nil, post_id: nil, created_at: nil, updated_at: nil&amp;gt;&lt;/span&gt;
+2.0.0-p451 :050 &amp;gt; c.save
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  begin transaction
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  rollback &lt;span class=&quot;nv&quot;&gt;transaction&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
+2.0.0-p451 :051 &amp;gt; c.errors.full_messages
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;User can&amp;#39;t be blank&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;Post can&amp;#39;t be blank&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;First, I create a new comment with &lt;code&gt;:body&lt;/code&gt; argument and try to save.  I cannot save, lets check the &lt;code&gt;errors.full_messages&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Next, add a&lt;code&gt;user_id&lt;/code&gt; and &lt;code&gt;post_id&lt;/code&gt; to your comment.  They need to already exist in your User and Post models:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :052 &amp;gt; c.user_id &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;5&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; 5
+2.0.0-p451 :053 &amp;gt; c.post_id &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;4&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; 4
+2.0.0-p451 :054 &amp;gt; c.save
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  begin transaction
+  User Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.2ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;, 5&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+  Post Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;, 4&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+  SQL &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.0ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  INSERT INTO &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;body&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;post_id&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;updated_at&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;user_id&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; VALUES &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;?, ?, ?, ?, ?&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;body&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s2&quot;&gt;&amp;quot;I enjoyed your post!&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;created_at&amp;quot;&lt;/span&gt;, Sun, 04 May 2014 21:08:34 UTC +00:00&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;post_id&amp;quot;&lt;/span&gt;, 4&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;updated_at&amp;quot;&lt;/span&gt;, Sun, 04 May 2014 21:08:34 UTC +00:00&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;, &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;user_id&amp;quot;&lt;/span&gt;, 5&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+   &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1.7ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  commit &lt;span class=&quot;nv&quot;&gt;transaction&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It looks like it is now a valid comment.  Also check to make sure you cannot create a comment with invalid &lt;code&gt;user_id&lt;/code&gt; and &lt;code&gt;post_id&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Lastly, check to see if you can find comments from User and Post objects:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :056 &amp;gt; &lt;span class=&quot;nv&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; User.find&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.comments
+ ...
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;ActiveRecord::Associations::CollectionProxy [#&amp;lt;Comment id: 3, body: &amp;quot;another comment&amp;quot;, user_id: 5, post_id: 4, created_at: &amp;quot;2014-05-04 20:43:47&amp;quot;, updated_at: &amp;quot;2014-05-04 20:43:47&amp;quot;&amp;gt;, #&amp;lt;Comment id: 4, body: &amp;quot;I enjoyed your post!&amp;quot;, user_id: 5, post_id: 4, created_at: &amp;quot;2014-05-04 21:08:34&amp;quot;, updated_at: &amp;quot;2014-05-04 21:08:34&amp;quot;&amp;gt;]&amp;gt;&lt;/span&gt;
+2.0.0-p451 :057 &amp;gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Post.find&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;4&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.comments
+ ...
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;ActiveRecord::Associations::CollectionProxy [#&amp;lt;Comment id: 3, body: &amp;quot;another comment&amp;quot;, user_id: 5, post_id: 4, created_at: &amp;quot;2014-05-04 20:43:47&amp;quot;, updated_at: &amp;quot;2014-05-04 20:43:47&amp;quot;&amp;gt;, #&amp;lt;Comment id: 4, body: &amp;quot;I enjoyed your post!&amp;quot;, user_id: 5, post_id: 4, created_at: &amp;quot;2014-05-04 21:08:34&amp;quot;, updated_at: &amp;quot;2014-05-04 21:08:34&amp;quot;&amp;gt;]&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a name=&quot;step8&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Step 8: Check valid associations in Console&lt;/h2&gt;
+
+&lt;p&gt;This is a final run-through to make sure the associations between the  &lt;code&gt;User&lt;/code&gt;, &lt;code&gt;Post&lt;/code&gt;, and &lt;code&gt;Comment&lt;/code&gt; models are working as we expect.&lt;/p&gt;
+
+&lt;p&gt;My tables should be different than yours, so play around with your sample data and make sure you can return similiar results:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :067 &amp;gt; &lt;span class=&quot;nv&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; User.find&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;5&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  User Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;, 5&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: 5, username: &amp;quot;Odin&amp;quot;, email: &amp;quot;odin@email.com&amp;quot;, password: &amp;quot;foobar&amp;quot;, created_at: &amp;quot;2014-05-03 18:02:23&amp;quot;, updated_at: &amp;quot;2014-05-03 18:02:23&amp;quot;&amp;gt;&lt;/span&gt;
+ 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :068 &amp;gt; &lt;span class=&quot;nv&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; u.comments.last
+  Comment Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.2ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;user_id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? ORDER BY &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; DESC LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;user_id&amp;quot;&lt;/span&gt;, 5&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Comment id: 4, body: &amp;quot;I enjoyed your post!&amp;quot;, user_id: 5, post_id: 4, created_at: &amp;quot;2014-05-04 21:08:34&amp;quot;, updated_at: &amp;quot;2014-05-04 21:08:34&amp;quot;&amp;gt;&lt;/span&gt;
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :069 &amp;gt; c.user
+  User Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;users&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;, 5&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;User id: 5, username: &amp;quot;Odin&amp;quot;, email: &amp;quot;odin@email.com&amp;quot;, password: &amp;quot;foobar&amp;quot;, created_at: &amp;quot;2014-05-03 18:02:23&amp;quot;, updated_at: &amp;quot;2014-05-03 18:02:23&amp;quot;&amp;gt;&lt;/span&gt;
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :070 &amp;gt; &lt;span class=&quot;nv&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Post.first
+  Post Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.3ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt; ORDER BY &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; ASC LIMIT &lt;span class=&quot;nv&quot;&gt;1&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Post id: 4, title: &amp;quot;A New Post&amp;quot;, body: &amp;quot;A post by Odin himself.&amp;quot;, created_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, updated_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, user_id: 5&amp;gt;&lt;/span&gt;
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :071 &amp;gt; p.comments.first
+  Comment Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.3ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;post_id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? ORDER BY &lt;span class=&quot;s2&quot;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; ASC LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;post_id&amp;quot;&lt;/span&gt;, 4&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Comment id: 3, body: &amp;quot;another comment&amp;quot;, user_id: 5, post_id: 4, created_at: &amp;quot;2014-05-04 20:43:47&amp;quot;, updated_at: &amp;quot;2014-05-04 20:43:47&amp;quot;&amp;gt;&lt;/span&gt;
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;2.0.0-p451 :072 &amp;gt; c.post
+  Post Load &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0.1ms&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;  SELECT &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.* FROM &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt; WHERE &lt;span class=&quot;s2&quot;&gt;&amp;quot;posts&amp;quot;&lt;/span&gt;.&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; ? LIMIT 1  &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;, 4&lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;c&quot;&gt;#&amp;lt;Post id: 4, title: &amp;quot;A New Post&amp;quot;, body: &amp;quot;A post by Odin himself.&amp;quot;, created_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, updated_at: &amp;quot;2014-05-03 18:03:16&amp;quot;, user_id: 5&amp;gt;&lt;/span&gt;
+  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 </content>
  </entry>
  
