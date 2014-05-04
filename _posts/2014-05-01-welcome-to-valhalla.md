@@ -5,9 +5,11 @@ comments: true
 permalink: build-a-minimalist-blog
 ---
 
-I am currently working on projects in the [Odin curriculum](http://www.theodinproject.com/home). 
+I am currently working on projects in the [Odin curriculum](http://www.theodinproject.com/courses). 
 
-I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and other students who get stuck and frustrated to the point of madness.
+I created this website to record my implementations/walkthroughs, organize my thoughts, and create a reference for me and other students who get stuck.
+
+This website was created with the following tools:
 
 ###The Tools:
 
@@ -19,5 +21,8 @@ I created this website to record my implementations/walkthroughs, organize my th
 
 Read a great step-by-step guide [here](http://joshualande.com/jekyll-github-pages-poole/). It took me an afternoon to get it set up and deployed with disqus comments.
 
+###Using Markdown in text editor to write posts
 
+An example of using markdown/text editor to write this actual post.
 
+![Markdown example](/assets/markdown_example.png)
