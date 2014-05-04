@@ -6,9 +6,9 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            Valhalla retreat
+title:            Valhalla Retreat
 tagline:          "One student's notes on the Odin Curriculum"
-description:      "Thoughts and walkthroughs of the <a href='http://www.theodinproject.com/'>Odin Curriculum</a>."
+description:      "Thoughts and walkthroughs of the <a href='http://www.theodinproject.com/courses'>Odin Curriculum</a>."
 url:              http://jberczel.github.com
 
 author:
