@@ -2,18 +2,21 @@
 layout: post
 title:  Micro-Reddit walkthrough
 comments: true
-permalink: micro-reddit-walkthrough
+permalink: micro-reddit-Walkthrough
 ---
 
 Estimated Time: 1 hr
 
-<div class="message">
-<b>Disclaimer:</b> This is my implementation of an Odin Project for reference. I'm not a Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is completely wrong, please feel free to contact me in the comments.
-</div>
-
+Course: Ruby on Rails >> Databases and Active Record >> [Project: Building With Active Record](http://www.theodinproject.com/ruby-on-rails/building-with-active-record)
 
 ##Objective:
 > Let's build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you'll build the data structures necessary to support link submissions and commenting. We won't build a front end for it because we don't need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.
+
+<!--more-->
+
+<div class="message">
+<b>Disclaimer:</b> This is my implementation of an Odin Project for reference. I'm not a Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is completely wrong, please feel free to contact me in the comments.
+</div>
 
 Basic Steps:
 
@@ -65,7 +68,7 @@ jamies-air:micro-reddit jxberc$
 <a name="step2"></a>
 ## Step 2: Create a User Model
 
-From the command line, run:
+From the command line:
 {% highlight console %}
 jamies-air:micro-reddit jxberc$ rails generate model User username:string, email:string, password:string
 {% endhighlight %}
@@ -115,14 +118,14 @@ The `rake db:migrate` command should create a sql database in your `micro-reddit
 
 ### Working with the Model in the Console
 
-From command line, run:
+From command line:
 {% highlight console %}
 jamies-air:micro-reddit jxberc$ rails console
 Loading development environment (Rails 4.0.4)
 2.0.0-p451 :001 >
 {% endhighlight %}
 
-Check User Table, should be empty:
+Check User Table; it should be empty:
 {% highlight bash %}
 2.0.0-p451 :003 > User.all
   User Load (0.3ms)  SELECT "users".* FROM "users"

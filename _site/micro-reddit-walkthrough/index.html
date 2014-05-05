@@ -10,7 +10,7 @@
 
   <title>
     
-      Micro-Reddit walkthrough &middot; Valhalla retreat
+      Micro-Reddit walkthrough &middot; Valhalla Retreat
     
   </title>
 
@@ -38,7 +38,7 @@
 <!-- Toggleable sidebar -->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-item">
-    <p>Thoughts and walkthroughs of the <a href='http://www.theodinproject.com/'>Odin Curriculum</a>.</p>
+    <p>Thoughts and walkthroughs of the <a href='http://www.theodinproject.com/courses'>Odin Curriculum</a>.</p>
   </div>
 
   <nav class="sidebar-nav">
@@ -86,7 +86,7 @@
       <div class="masthead">
         <div class="container">
           <h3 class="masthead-title">
-            <a href="/" title="Home">Valhalla retreat</a>
+            <a href="/" title="Home">Valhalla Retreat</a>
             <small>One student's notes on the Odin Curriculum</small>
           </h3>
         </div>
@@ -98,15 +98,19 @@
   <span class="post-date">02 May 2014</span>
   <p>Estimated Time: 1 hr</p>
 
-<div class="message">
-<b>Disclaimer:</b> This is my implementation of an Odin Project for reference. I'm not a Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is completely wrong, please feel free to contact me in the comments.
-</div>
+<p>Course: Ruby on Rails &gt;&gt; Databases and Active Record &gt;&gt; <a href="http://www.theodinproject.com/ruby-on-rails/building-with-active-record">Project: Building With Active Record</a></p>
 
 <h2>Objective:</h2>
 
 <blockquote>
 <p>Let&#39;s build Reddit. Well, maybe a very junior version of it called micro-reddit. In this project, you&#39;ll build the data structures necessary to support link submissions and commenting. We won&#39;t build a front end for it because we don&#39;t need to... you can use the Rails console to play around with models without the overhead of making HTTP requests and involving controllers or views.</p>
 </blockquote>
+
+<!--more-->
+
+<div class="message">
+<b>Disclaimer:</b> This is my implementation of an Odin Project for reference. I'm not a Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is completely wrong, please feel free to contact me in the comments.
+</div>
 
 <p>Basic Steps:</p>
 
@@ -161,7 +165,7 @@ the <code>rails new &lt;project name&gt;</code> command from your terminal, whic
 
 <h2>Step 2: Create a User Model</h2>
 
-<p>From the command line, run:</p>
+<p>From the command line:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails generate model User username:string, email:string, password:string
 </code></pre></div>
@@ -209,14 +213,14 @@ the <code>rails new &lt;project name&gt;</code> command from your terminal, whic
 
 <h3>Working with the Model in the Console</h3>
 
-<p>From command line, run:</p>
+<p>From command line:</p>
 
 <div class="highlight"><pre><code class="console"><span class="gp">jamies-air:micro-reddit jxberc$</span> rails console
 <span class="go">Loading development environment (Rails 4.0.4)</span>
 <span class="go">2.0.0-p451 :001 &gt;</span>
 </code></pre></div>
 
-<p>Check User Table, should be empty:</p>
+<p>Check User Table; it should be empty:</p>
 
 <div class="highlight"><pre><code class="bash">2.0.0-p451 :003 &gt; User.all
   User Load <span class="o">(</span>0.3ms<span class="o">)</span>  SELECT <span class="s2">&quot;users&quot;</span>.* FROM <span class="s2">&quot;users&quot;</span>
@@ -592,27 +596,9 @@ using the foreign keys: <code>:user_id</code> and <code>post_id</code>, but I&#3
     
       <li>
         <h3>
-          <a href="/2014/05/02/2013-12-31-whats-jekyll/">
-            What's Jekyll?
-            <small>02 May 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/2014/05/02/2014-01-01-example-content/">
-            Example content
-            <small>02 May 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="/2014/05/02/2014-01-02-introducing-lanyon/">
-            Introducing Lanyon
-            <small>02 May 2014</small>
+          <a href="/build-a-minimalist-blog">
+            Build a Minimalist Blog
+            <small>01 May 2014</small>
           </a>
         </h3>
       </li>
