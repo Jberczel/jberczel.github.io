@@ -70,7 +70,7 @@ jamies-air:micro-reddit jxberc$
 
 From the command line:
 {% highlight console %}
-jamies-air:micro-reddit jxberc$ rails generate model User username:string, email:string, password:string
+jamies-air:micro-reddit jxberc$ rails generate model User username:string email:string password:string
 {% endhighlight %}
 
 The `rails generate` script creates templates for models, controllers, and views. In this case, we will generate a new `model`, and name it `User`.
@@ -79,7 +79,7 @@ The additional arguments `username:string`, `email:string`, and `password:string
 
 After you create the User Model, you should see this in your terminal:
 {% highlight console %}
-jamies-air:micro-reddit jxberc$ rails generate model User username:string, email:string, password:string
+jamies-air:micro-reddit jxberc$ rails generate model User username:string email:string password:string
       invoke  active_record
       create    db/migrate/20140502132449_create_users.rb
       create    app/models/user.rb
