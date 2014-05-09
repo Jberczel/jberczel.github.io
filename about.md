@@ -10,6 +10,6 @@ Before discoverirng the [Odin curriculum](http://www.theodinproject.com/courses)
 
 Completing both courses was a rewarding experience, and it gave me the skills to build a website for my thru-hike.
 
-However, when I returned from my thru-hike, I had forgotten a lot of the detail. While I was re-learning, I stumbled upon the Odin curriculum.
+However, after returning from my thru-hike, I had forgotten a lot of the detail. While I was re-learning, I stumbled upon the Odin curriculum.
 
-In short, I found it highly engaging, informative, and just plain old fun. I haven't looked back and hope to complete the curriculum by the end of the summer (2014).
+In short, I found it highly engaging, informative, and just plain old fun. I haven't looked back and plan to complete the curriculum by the end of the summer (2014).

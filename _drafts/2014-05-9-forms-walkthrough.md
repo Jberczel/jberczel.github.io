@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Bare Metal Forms and Helpers
+comments: true
+title: Bare Metal Forms and Helpers Walkthrough
 ---
 
 Estimated time: 2-3 hours
@@ -21,10 +22,17 @@ Basic Steps:
 5. [Editing Users](#step5)
 6. [Extra Credit](#step6)
 
+<div class="message">
+<b>Disclaimer:</b> This is my implementation of Project:Forms from the Odin Project. I'm no Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is incorrect, please feel free to contact me in the comments.
+</div>
+
+
 <a name="step1"></a>
 ##Step 1: Setup
 
-Create new Rails App:
+First, create a basic Rails app with User Model and Controller.
+
+From the command line, create a new Rails app:
 
 {% highlight console %}
 jamies-air:~ jxberc$ rails new re-former
@@ -205,6 +213,8 @@ Completed 302 Found in 14ms (ActiveRecord: 2.4ms)
 <a name="step3"></a>
 ##Step 3: Build \#form\_tag Form
 
+In this step, we will replace our html form with a \#form\_tag Form.
+
 First, comment out your html form:
 
 {% highlight html %}
@@ -285,14 +295,22 @@ Comment out `#form_tag` and build `#form_for` form:
 
 {% highlight erb %}
 <%= form_for @user do |f| %>
-  USERNAME:<%= f.text_field :username %> <br />
-  EMAIL:<%= f.text_field :email, :value => "example@email.com" %> <br />
-  PASSWORD: <%= f.password_field :password %><br />
-  <%= f.submit %>
-<% end %>
+<p>
+  <%= f.label :username %> <br/>
+  <%= f.text_field :username %>
+</p>
+<p>
+  <%= f.label :email %> <br/>
+  <%= f.text_field :email, :value => "example@email.com" %>
+</p>
+<p>
+  <%= f.label :password %> <br/>
+  <%= f.password_field :password %>
+</p>
+<p><%= f.submit %></p>
 {% endhighlight %}
 
-**Note:** We've used slightly different labels, and added a default placeholder value for `:email`.
+**Note:** I've added a default placeholder value for `:email`.
 
 Finally, in `app/controllers/user_controller.rb`, switch your controller's `#create` method to accept the nested `:user` hash from params.
 
@@ -330,12 +348,16 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to edit_user_path(@user)
+    if 
+      @user.update(user_params)
+      redirect_to edit_user_path(@user)
+    else
+      render :edit
+    end
   end
 {% endhighlight %}
 
-Create the Edit view at `app/views/users/edit.html.erb`. Copy/paste your form from the New view.
+Create `app/views/users/edit.html.erb`. Copy/paste your form from the New view to Edit form:
 
 {% highlight erb %}
 <%= form_for @user do |f| %>
@@ -354,8 +376,26 @@ You should see authentication token and other relevant hidden fields.
 
 Confirm that you can submit data and that validations are working.
 
+<a name="step6"></a>
 ##Step 6: Extra Credit
 
+In `app/views/users/new.html.erb` and `app/views/users/edit.html.erb`, include error messages:
+
+{% highlight erb %}
+<%= form_for @user do |f| %>
+<ul>
+  <% @user.errors.full_messages.each do |error| %>
+  <li><%= error %></li>
+  <% end %>
+</ul>
+...
+{% endhighlight %}
+
+Now, when validations fail, errors should display:
+
+![display_errors](/assets/display_errors.png)
+
+Congratulations! You've just created basic forms using html and ruby helper methods.
 
 
 

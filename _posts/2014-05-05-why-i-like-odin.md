@@ -37,31 +37,29 @@ Like learning a musical instrument, it takes time, deliberate practice, and pati
 
 ##4. Well-Timed Learning
 
-I am learning a little of everything at the appropriate time and discovering how each web technology fits into the bigger pciture.
+I am learning a little of everything at the appropriate time and discovering how each web technology fits into the bigger picture.
 
-For example, I've learned just enough about the command line, git version control, html/css, Ruby language, object-oriented programming, databases, and alogrithms to complete each successive project.
+I've learned just enough about the command line, git version control, html/css, Ruby language, object-oriented programming, databases, and alogrithms to complete each successive project.
 
-When project become more complex, you learn more about each technology. 
+When projects become more complex, you learn more about each technology. 
 
-I think this approach is better than learning all the tools independently.  That would be like spending a month learning html/css, and then after that, spending a month learning back-end development and databases.  Ideally, you should be learning both for two months, so that you can see the connection.
+I think this approach is better than learning all the tools independently.  That would be like spending a month learning html/css, and then after that, spending a month learning back-end development and databases.  Ideally, you should be learning both for two months to reinforce learning and see the connection between both technologies.
 
 
 ##5 Building a Portfolio
 
 At Udacity, I'd watch short, 5-minute videos and solve small problems until getting to bigger problem sets at the end of each lesson.  I enjoyed this style of learning, but this is where I think the Odin Project stands out.  Rather than just submitting small code snippets, you're constantly writing and pushing code to github.
 
-You have a record of your code from the very beginning.  It's not the best-written code, but you can trace your progress and always go back to review code. It's all there in your github account.
+You have a record of your code from the very beginning.  It's not the best-written code, but you can trace your progress and always go back to review. It's all easily accessible in your github account.
 
 Psychologically, it's nice to see all your work in one place.  It gives you a sesne of accomplishment, and I'm sure it'll be interesting to look back at in a year or two to see how far you've progressed.
 
 
 ##6. Open Community and Founder
 
-There are volunteers running study groups/sessions. After writing some walkthroughs, I can appreciate how much time and effort some of the original founders put into this project. 
+There are volunteers running study groups/sessions. After writing a few walkthroughs, I can appreciate how much time and effort some of the original contributors put into this project.
 
-I also like how the Founder left Finance field to pursue his ideals.  Similarly, I left the corporate finance world to walk another path.
-
-It also doesn't hurt that it is a free, [open-source curriculum](https://github.com/TheOdinProject/theodinproject).
+It also doesn't hurt that it is a free, open-source, [curriculum](https://github.com/TheOdinProject/theodinproject).
 
 
 
