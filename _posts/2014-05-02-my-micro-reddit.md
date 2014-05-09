@@ -2,7 +2,7 @@
 layout: post
 title:  Micro-Reddit walkthrough
 comments: true
-permalink: micro-reddit-Walkthrough
+permalink: micro-reddit-walkthrough
 ---
 
 Estimated Time: 1 hr

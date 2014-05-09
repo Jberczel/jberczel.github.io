@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 6 Reasons I Like the Odin Curriculum
+permalink: why-i-like-odin
 ---
 
 Since returning from my 2013 [thru-hike](http://www.atjindo.com), I've been studying and working through the [Odin curriculum](http://www.theodinproject.com/courses). Previously, I had studied web app develompent for 3-4 months primarily at [Udacity](https://www.udacity.com/), and other online resources.

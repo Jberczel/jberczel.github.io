@@ -2,6 +2,7 @@
 layout: post
 comments: true
 title: Bare Metal Forms and Helpers Walkthrough
+permalink:forms-walkthrough
 ---
 
 Estimated time: 2-3 hours
