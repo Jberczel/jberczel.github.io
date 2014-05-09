@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Jumpstart Labs Blogger Tutorial - Extras
+permalink: jumpstart-labs-blogger-walkthrough
 ---
 
 #Objective

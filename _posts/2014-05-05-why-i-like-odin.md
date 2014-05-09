@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 6 Reasons I Like the Odin Curriculum
+comments: true
 permalink: why-i-like-odin
 ---
 
