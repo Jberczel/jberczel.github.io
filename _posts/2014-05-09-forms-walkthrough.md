@@ -8,12 +8,12 @@ Estimated time: 2-3 hours
 
 Course: Ruby on Rails >> Forms and Authentication >> [Project: Forms](http://www.theodinproject.com/ruby-on-rails/forms)
 
-#Objective
+##Objective
 > These projects will give you a chance to actually build some forms, both using nearly-pure HTML and then graduating to using the helper methods that Rails provides. 
 
 <!--more-->
 
-Basic Steps:
+##Basic Steps:
 
 1. [Setup](#step1)
 2. [Build HTML Form](#step2)
