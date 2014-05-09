@@ -3,15 +3,26 @@ layout: post
 title: Bare Metal Forms and Helpers
 ---
 
+Estimated time: 2-3 hours
+
+Course: Ruby on Rails >> Forms and Authentication >> [Project: Forms](http://www.theodinproject.com/ruby-on-rails/forms)
+
+#Objective
+> These projects will give you a chance to actually build some forms, both using nearly-pure HTML and then graduating to using the helper methods that Rails provides. 
+
+<!--more-->
+
 Basic Steps:
 
 1. [Setup](#step1)
 2. [Build HTML Form](#step2)
 3. [Build #form_tag Form](#step3)
 4. [Build #form_for Form](#step4)
+5. [Editing Users](#step5)
+6. [Extra Credit](#step6)
 
 <a name="step1"></a>
-##Setup
+##Step 1: Setup
 
 Create new Rails App:
 
@@ -82,7 +93,7 @@ In `app/views/users` folder, create `new.html.erb` file.  Add boilerplate text t
 From the command line, load development server using `rails s`.  You should see the boilerplate text at ` http://localhost:3000/users/new`.
 
 <a name="step2"></a>
-##Build HTML Form
+##Step 2: Build HTML Form
 
 Build a form for creating a new user:
 
@@ -192,9 +203,158 @@ Completed 302 Found in 14ms (ActiveRecord: 2.4ms)
 {% endhighlight %}
 
 <a name="step3"></a>
-##Build \#form_tag Form
+##Step 3: Build \#form\_tag Form
 
+First, comment out your html form:
 
+{% highlight html %}
+<!-- <form accept-charset="UTF-8" action="/users" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="username">Username:</label>
+  <input id="username"  name="user[username]" type="text"><br>
+
+  <label for="email">e-mail:</label>
+  <input id="email" name="user[email]" type="text"><br>
+
+  <label for="password">Password:</label>
+  <input id="password" name="user[password]" type="password"><br>
+
+  <input type="submit" value="Submit">
+</form> -->
+{% endhighlight %}
+
+Switch to using `#form_tag` and `#*_tag` helper methods.  Note that Rails will insert authenticity token automatically.
+
+{% highlight erb %}
+<%= form_tag("/users", method: "post") do %>
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username) %><br>
+
+  <%= label_tag(:email, "email:") %>
+  <%= text_field_tag(:email) %><br>
+
+  <%= label_tag(:password, "password:") %>
+  <%= password_field_tag(:password) %><br>
+
+  <%= submit_tag("Submit") %>
+<% end %>
+{% endhighlight %}
+
+In `app/controllers/user_controller.rb`, modify`#create` method to once again accept normal top level User attributes.
+
+{% highlight ruby %}
+def create
+    @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+    #@user = User.new(user_params)
+    ...
+  end
+{% endhighlight %}
+
+Confirm you can submit data.
+
+<a name="step4"></a>
+##Step 4: Build \#form\_for Form
+
+Modify your `#new` action in the controller to instantiate a blank User object and store it in an instance variable called @user.
+
+{% highlight ruby %}
+class UsersController < ApplicationController
+  def new
+    @user = User.new
+  end
+  ...
+{% endhighlight %}
+
+Comment out `#form_tag` and build `#form_for` form:
+
+{% highlight html %}
+<!-- <%= form_tag("/users", method: "post") do %>
+  <%= label_tag(:username, "Username:") %>
+  <%= text_field_tag(:username) %><br>
+
+  <%= label_tag(:email, "email:") %>
+  <%= text_field_tag(:email) %><br>
+
+  <%= label_tag(:password, "password:") %>
+  <%= password_field_tag(:password) %><br>
+
+  <%= submit_tag("Submit") %>
+<% end %> -->
+{% endhighlight %}
+
+{% highlight erb %}
+<%= form_for @user do |f| %>
+  USERNAME:<%= f.text_field :username %> <br />
+  EMAIL:<%= f.text_field :email, :value => "example@email.com" %> <br />
+  PASSWORD: <%= f.password_field :password %><br />
+  <%= f.submit %>
+<% end %>
+{% endhighlight %}
+
+**Note:** We've used slightly different labels, and added a default placeholder value for `:email`.
+
+Finally, in `app/controllers/user_controller.rb`, switch your controller's `#create` method to accept the nested `:user` hash from params.
+
+{% highlight ruby %}
+def create
+    #@user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+    @user = User.new(user_params)
+    ...
+  end
+{% endhighlight %}
+
+Confirm you can submit data using the newly created `#form_for` form:
+
+![form_for form](/assets/form_for.png)
+
+<a name="step5"></a>
+##Step 5: Editing Users
+
+Update your routes and controller to handle editing an existing user.
+
+In `config/routes.rb`:
+{% highlight ruby %}
+ReFormer::Application.routes.draw do
+  resources :users, :only => [:new, :create, :edit, :update]
+  ...
+{% endhighlight %}
+
+In `app/controllers/users_controller.rb`:
+{% highlight ruby %}
+class UsersController < ApplicationController
+  ...
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to edit_user_path(@user)
+  end
+{% endhighlight %}
+
+Create the Edit view at `app/views/users/edit.html.erb`. Copy/paste your form from the New view.
+
+{% highlight erb %}
+<%= form_for @user do |f| %>
+  USERNAME:<%= f.text_field :username %> <br />
+  EMAIL:<%= f.text_field :email, :value => "example@email.com" %> <br />
+  PASSWORD: <%= f.password_field :password %><br />
+  <%= f.submit %>
+<% end %>
+{% endhighlight %}
+
+"View source" on the form generated by #form_for in your Edit view.
+
+![hidden fields](/assets/hidden_fields.png)
+
+You should see authentication token and other relevant hidden fields.
+
+Confirm that you can submit data and that validations are working.
+
+##Step 6: Extra Credit
 
 
 
