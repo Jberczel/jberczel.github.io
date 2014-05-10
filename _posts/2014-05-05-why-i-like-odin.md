@@ -5,9 +5,9 @@ comments: true
 permalink: why-i-like-odin
 ---
 
-Since returning from my 2013 [thru-hike](http://www.atjindo.com), I've been studying and working on projects from the [Odin curriculum](http://www.theodinproject.com/courses). Previously, I had studied web app develompent for 3-4 months primarily at [Udacity](https://www.udacity.com/), and other online resources.
+Since returning from my 2013 [thru-hike](http://www.atjindo.com), I've been studying and working on projects from the [Odin curriculum](http://www.theodinproject.com/courses). Previously, I had studied web app development for 3-4 months primarily at [Udacity](https://www.udacity.com/), and other online resources.
 
- I was able to build my frist real website, but when I returned, I had forgotten a lot of the detail. I needed a refresher and found the Odin Project. Here are the reasons why I am now sticking with the Odin curriculum.
+ I was able to build my first real website, but when I returned, I had forgotten a lot of the detail. I needed a refresher and found the Odin Project. Here are the reasons why I am now sticking with the Odin curriculum.
 
 <!--more-->
 
@@ -41,7 +41,7 @@ Like learning a musical instrument, it takes time, deliberate practice, and pati
 
 I am learning a little of everything at the appropriate time and discovering how each web technology fits into the bigger picture.
 
-I've learned just enough about the command line, git version control, html/css, Ruby language, object-oriented programming, databases, and alogrithms to complete each successive project.
+I've learned just enough about the command line, git version control, html/css, Ruby language, object-oriented programming, databases, and algorithms to complete each successive project.
 
 When projects become more complex, you learn more about each technology. 
 
@@ -54,7 +54,7 @@ At Udacity, I'd watch short, 5-minute videos and solve small problems until gett
 
 You have a record of your code from the very beginning.  It's not the best-written code, but you can trace your progress and always go back to review. It's all easily accessible in your github account.
 
-Psychologically, it's nice to see all your work in one place.  It gives you a sesne of accomplishment, and I'm sure it'll be interesting to look back at in a year or two to see how far you've progressed.
+Psychologically, it's nice to see all your work in one place.  It gives you a sense of accomplishment, and I'm sure it'll be interesting to look back at in a year or two to see how far you've progressed.
 
 
 ##6. Open Community and Founder

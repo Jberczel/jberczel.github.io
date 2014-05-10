@@ -6,7 +6,7 @@ permalink: build-a-minimalist-blog
 ---
 ##Purpose of this blog
 
-I am currently working on projects in the [Odin curriculum](http://www.theodinproject.com/courses). 
+I am currently working on projects in the [Odin curriculum ](http://www.theodinproject.com/courses). 
 
 This website serves two purposes:
 

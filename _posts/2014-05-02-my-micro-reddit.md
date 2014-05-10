@@ -376,7 +376,7 @@ jamies-air:micro-reddit jxberc$ rake db:migrate
 {% endhighlight %}
 
 <a name="step6"></a>
-##Step 6: Bulding Additional Assocations
+##Step 6: Building Additional Associations
 
 In the `app/models` folder, update associations for each of the models:
 
@@ -407,7 +407,7 @@ end
 <a name="step7"></a>
 ##Step 7: Add Validations to Comment Model
 
-We're adding validaitons to the Comment model, so we don't accidently create comments with no associated User or Post.
+We're adding validations to the Comment model, so we don't accidentally create comments with no associated User or Post.
 
 In the file `app/models/comment.rb`, include validations:
 
@@ -476,7 +476,7 @@ Lastly, check to see if you can find comments from User and Post objects:
 
 This is a final run-through to make sure the associations between the  `User`, `Post`, and `Comment` models are working as we expect.
 
-My tables should be different than yours, so play around with your sample data and make sure you can return similiar results:
+My tables should be different than yours, so play around with your sample data and make sure you can return similar results:
 
 {% highlight bash %}
 2.0.0-p451 :067 > u = User.find(5)
