@@ -12,6 +12,7 @@ Since returning from my 2013 [thru-hike](http://www.atjindo.com), I've been stud
 <!--more-->
 
 ##1. It's a Great Map and Guide
+
 When I solo hiked the Appalachian trail (2,200 miles), I had a [guidebook](http://www.amazon.com/The-A-T-Guide-Southbound-2013/dp/0982980833/ref=sr_1_2?ie=UTF8&qid=1399332731&sr=8-2&keywords=awol+guide+southbound) with small maps, elevation profiles, distance markers, and other useful information. It was one of my 'must have' core items for successfully hiking from Maine to Georgia.
 
 When attempting the huge feat of learning web development on your own, I view the Odin curriclum as a great guide. It's filled with small projects, detailed explanations, links to helpful resources, and a supportive community.  
