@@ -5,24 +5,26 @@ comments: true
 permalink: why-i-like-odin
 ---
 
-Since returning from my 2013 [thru-hike](http://www.atjindo.com), I've been studying and working on projects from the [Odin curriculum](http://www.theodinproject.com/courses). Before my trip, I studied web app development for 3-4 months primarily at [Udacity](https://www.udacity.com/).
+After returning from my 2013 [thru-hike](http://www.atjindo.com), I began re-learning web development. Thankfully, I stumbled upon [Odin curriculum](http://www.theodinproject.com/courses).
 
- I was able to build my first real website, but when I returned, I had forgotten a lot of the detail. I needed a refresher and found the Odin Project. Here are the reasons why I am now sticking with the Odin curriculum.
+Before my big trip, I studied web app development mainly at [Udacity](https://www.udacity.com/), and was able to build my first 'real' website.  However, when I returned, I had forgotten a lot of the detail. I needed a refresher and found the Odin Project. Here are the reasons why I am now sticking with the Odin curriculum.
 
 <!--more-->
 
 ##1. It's a Great Map and Guide
 
-When I solo hiked the Appalachian trail (2,200 miles), I had a [guidebook](http://www.amazon.com/The-A-T-Guide-Southbound-2013/dp/0982980833/ref=sr_1_2?ie=UTF8&qid=1399332731&sr=8-2&keywords=awol+guide+southbound) with small maps, elevation profiles, distance markers, and other useful information. It was one of my 'must have' core items for successfully hiking from Maine to Georgia.
+When I solo hiked the Appalachian trail (2,200 miles), I had a [guidebook](http://www.amazon.com/The-A-T-Guide-Southbound-2013/dp/0982980833/ref=sr_1_2?ie=UTF8&qid=1399332731&sr=8-2&keywords=awol+guide+southbound). It had small maps, elevation profiles, distance markers, and other useful information. It was one of my 'must have' essential items for successfully hiking from Maine to Georgia.
 
-When attempting the huge feat of learning web development on your own, I view the Odin curriclum as a great guide. It's filled with small projects, detailed explanations, links to helpful resources, and a supportive community.  
+When attempting the huge feat of learning web development, the Odin curriculum is like a great guide. It's filled with small projects, detailed explanations, links to helpful resources, and a supportive community.  
 
-It's a guide that keeps you on trail, and drastically reduces those moments you feel lost in the woods.
+It keeps you on trail, and cuts down the time you feel completely lost in the woods.
 
 ##2. Repository of Learning Tools
-I studied regular expressions briefly when deploying my first real website, but had little experience. The Odin curriculum directed me to [regexone](http://regexone.com/), which I wish I discovered when I first started learning regular expressions.  
+I studied regular expressions briefly when deploying my first real website, but had little experience and a vague understanding.
 
-Similarly, I enjoyed reviewing git version control from [Atlassian](https://www.atlassian.com/git/tutorial), which I also found via the Odin curriculum.  
+The Odin curriculum directed me to [regexone](http://regexone.com/), which I wish I discovered a long time ago.
+
+Similarly, I enjoyed reviewing git version control from [Atlassian](https://www.atlassian.com/git/tutorial). 
 
 These links are just a few of the awesome resources you can find following along with the curriculum.
 
@@ -30,11 +32,11 @@ These links are just a few of the awesome resources you can find following along
 
 >A journey of a thousand miles begins with a single step.
 
-Learning web development, especially on your own, can be extremely daunting.  Rather than trying to tackle one big project, breaking it down into smaller pieces and taking it day by day are sound advice.
+Learning web development, especially on your own, can be extremely daunting.  Rather than trying to tackle one big project, breaking it down into smaller pieces and taking it day by day are sound, albeit cliche, advice.
 
 Completing small projects is fun, builds momentum, and leads to bigger goals and projects.
 
-As an example, I enjoyed working on small projects such as the [sketchpad](https://github.com/Jberczel/odin-projects/tree/master/sketchpad) project (intro to jQuery technology).
+As an example, I enjoyed working on a [sketchpad](https://github.com/Jberczel/odin-projects/tree/master/sketchpad) project, which is a basic introduction to jQuery.
 
 Like learning a musical instrument, it takes time, deliberate practice, and patience to achieve success. By working on small projects, you avoid a lot of frustration, and learn to enjoy the process.
 
@@ -49,7 +51,7 @@ When projects become more complex, you learn more about each technology.
 I think this approach is better than learning all the tools independently.  That would be like spending a month learning html/css, and then after that, spending a month learning back-end development and databases.  Ideally, you should be learning both for two months to reinforce learning and see the connection between both technologies.
 
 
-##5 Building a Portfolio
+##5. Building a Portfolio
 
 At Udacity, I'd watch short, 5-minute videos and solve small problems until getting to bigger problem sets at the end of each lesson.  I enjoyed this style of learning, but this is where I think the Odin Project stands out.  Rather than just submitting small code snippets, you're constantly writing and pushing code to github.
 
