@@ -12,16 +12,16 @@ Since returning from my 2013 [thru-hike](http://www.atjindo.com), I've been stud
 <!--more-->
 
 ##1. It's a Great Map and Guide
-When I solo hiked the Appalachian trail (2,200 miles), I had a [guidebook](http://www.amazon.com/The-A-T-Guide-Southbound-2013/dp/0982980833/ref=sr_1_2?ie=UTF8&qid=1399332731&sr=8-2&keywords=awol+guide+southbound) with small maps, elevation profiles, distance markers, and all sorts of useful information.  I'm not sure if I could've successfully hiked from Maine to Georgia without it.
+When I solo hiked the Appalachian trail (2,200 miles), I had a [guidebook](http://www.amazon.com/The-A-T-Guide-Southbound-2013/dp/0982980833/ref=sr_1_2?ie=UTF8&qid=1399332731&sr=8-2&keywords=awol+guide+southbound) with small maps, elevation profiles, distance markers, and other useful information. It was one of my 'must have" core items for successfully hiking from Maine to Georgia.
 
 When attempting the huge feat of learning web development on your own, I view the Odin curriclum as a great guide. It's filled with small projects, detailed explanations, links to helpful resources, and a supportive community.  
 
 It's a guide that keeps you on trail, and drastically reduces those moments you feel lost in the woods.
 
 ##2. Repository of Learning Tools
-I studied regular expressions briefly when deploying my first real website, but the Odin curriculum directed me to [regexone](http://regexone.com/), which I wish I discovered when I first started learning regular expressions.  
+I studied regular expressions briefly when deploying my first real website, but had little experience. The Odin curriculum directed me to [regexone](http://regexone.com/), which I wish I discovered when I first started learning regular expressions.  
 
-Similarly, I enjoyed re-learning about git version control from [atlassian](https://www.atlassian.com/git/tutorial), which I also found via the Odin curriculum.  
+Similarly, I enjoyed reviewing git version control from [Atlassian](https://www.atlassian.com/git/tutorial), which I also found via the Odin curriculum.  
 
 These links are just a few of the awesome resources you can find following along with the curriculum.
 
@@ -31,9 +31,9 @@ These links are just a few of the awesome resources you can find following along
 
 Learning web development, especially on your own, can be extremely daunting.  Rather than trying to tackle one big project, breaking it down into smaller pieces and taking it day by day are sound advice.
 
-Completing small projects is fun and leads to bigger goals and projects.
+Completing small projects is fun, builds momentum, and leads to bigger goals and projects.
 
-As an example, I've enjoyed working on small projects such as the [sketchpad](https://github.com/Jberczel/odin-projects/tree/master/sketchpad) project (intro to jQuery technology).
+As an example, I enjoyed working on small projects such as the [sketchpad](https://github.com/Jberczel/odin-projects/tree/master/sketchpad) project (intro to jQuery technology).
 
 Like learning a musical instrument, it takes time, deliberate practice, and patience to achieve success. By working on small projects, you avoid a lot of frustration, and learn to enjoy the process.
 
@@ -61,7 +61,7 @@ Psychologically, it's nice to see all your work in one place.  It gives you a se
 
 There are volunteers running study groups/sessions. After writing a few walkthroughs, I can appreciate how much time and effort some of the original contributors put into this project.
 
-It also doesn't hurt that it is a free, open-source, [curriculum](https://github.com/TheOdinProject/theodinproject).
+It also doesn't hurt that it is a free, open-source [curriculum](https://github.com/TheOdinProject/theodinproject).
 
 
 
