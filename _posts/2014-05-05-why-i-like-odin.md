@@ -5,7 +5,7 @@ comments: true
 permalink: why-i-like-odin
 ---
 
-After returning from my 2013 [thru-hike](http://www.atjindo.com), I began re-learning web development. Thankfully, I stumbled upon [Odin curriculum](http://www.theodinproject.com/courses).
+After returning from my 2013 [thru-hike](http://www.atjindo.com), I began re-learning web development. Thankfully, I stumbled upon the [Odin curriculum](http://www.theodinproject.com/courses).
 
 Before my big trip, I studied web app development mainly at [Udacity](https://www.udacity.com/), and was able to build my first 'real' website.  However, when I returned, I had forgotten a lot of the detail. I needed a refresher and found the Odin Project. Here are the reasons why I am now sticking with the Odin curriculum.
 
@@ -32,11 +32,11 @@ These links are just a few of the awesome resources you can find following along
 
 >A journey of a thousand miles begins with a single step.
 
-Learning web development, especially on your own, can be extremely daunting.  Rather than trying to tackle one big project, breaking it down into smaller pieces and taking it day by day are sound, albeit cliche, advice.
+Learning web development, especially on your own, can be extremely daunting.  Big projects are scary and easily derail you.
 
-Completing small projects is fun, builds momentum, and leads to bigger goals and projects.
+Completing small projects is fun, builds momentum, and leads to bigger goals and projects.  After working through a few small projects, some of the bigger projects don't look as overwhelming, once you've put a few of the pieces together.
 
-As an example, I enjoyed working on a [sketchpad](https://github.com/Jberczel/odin-projects/tree/master/sketchpad) project, which is a basic introduction to jQuery.
+As an example, I enjoyed working on a [sketchpad](https://github.com/Jberczel/odin-projects/tree/master/sketchpad) project, which is a basic introduction to jQuery. I plan to build on this knowledge for future projects.
 
 Like learning a musical instrument, it takes time, deliberate practice, and patience to achieve success. By working on small projects, you avoid a lot of frustration, and learn to enjoy the process.
 
@@ -51,7 +51,7 @@ When projects become more complex, you learn more about each technology.
 I think this approach is better than learning all the tools independently.  That would be like spending a month learning html/css, and then after that, spending a month learning back-end development and databases.  Ideally, you should be learning both for two months to reinforce learning and see the connection between both technologies.
 
 
-##5. Building a Portfolio
+##5. Build a Portfolio
 
 At Udacity, I'd watch short, 5-minute videos and solve small problems until getting to bigger problem sets at the end of each lesson.  I enjoyed this style of learning, but this is where I think the Odin Project stands out.  Rather than just submitting small code snippets, you're constantly writing and pushing code to github.
 
