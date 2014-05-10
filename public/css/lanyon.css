@@ -41,13 +41,14 @@ body {
 }
 
 html {
-  font-family: "PT Serif", Georgia, "Times New Roman", serif;
+  /*font-family: "PT Serif", Georgia, "Times New Roman", serif;*/
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: #313131;
+  color: #313131; 
   letter-spacing: -.025rem;
 }
 
@@ -74,6 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   max-width: 28rem;
+
 }
 @media (min-width: 38rem) {
   .container {
@@ -82,7 +84,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 56rem) {
   .container {
-    max-width: 38rem;
+   /* max-width: 38rem;*/
+   max-width: 42rem;
   }
 }
 
