@@ -10,7 +10,7 @@ I am currently working on projects in the [Odin curriculum ](http://www.theodinp
 
 This website serves two purposes:
 
-1. Record my thoughts, implementations, and walkthroughs of some of the Odin projects, which can later be used as reference.
+1. Record my thoughts, implementations, and walkthroughs of some of the Odin projects.
 2. Practice writing about coding and technical issues.
 
 <!--more-->

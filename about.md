@@ -12,4 +12,4 @@ Completing the Udacity courses was a rewarding experience, and it gave me the sk
 
 However, after returning from 5 months on the trail, I had forgotten a lot of the detail. I needed a refresher, and luckily, stumbled upon the Odin curriculum.
 
-In short, I found it highly engaging, informative, and just plain old fun. I haven't looked back and plan to complete the curriculum by the end of the summer (2014).
+In short, I find it highly engaging, informative, and just plain old fun. I haven't looked back and plan to complete the curriculum by the end of the summer (2014).
