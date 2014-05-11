@@ -6,7 +6,7 @@ title: About
 
 My name is Jamie.  I've been studying web development since returning from my 2013 [thru-hike](http://www.atjindo.com).
 
-Before discoverirng the [Odin curriculum](http://www.theodinproject.com/courses), I completed two courses at [Udacity](https://www.udacity.com/): Building a Search Engine and Web App Development.  In addition, I learned a little front-end development from other online resources such as nettuts and codeacademy.
+Before discovering the [Odin curriculum](http://www.theodinproject.com/courses), I completed two courses at [Udacity](https://www.udacity.com/): Building a Search Engine and Web App Development.  In addition, I learned a little front-end development from other online resources such as nettuts and codeacademy.
 
 Completing the Udacity courses was a rewarding experience, and it gave me the skills to build my first website.
 

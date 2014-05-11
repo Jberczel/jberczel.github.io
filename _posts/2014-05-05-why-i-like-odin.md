@@ -5,19 +5,19 @@ comments: true
 permalink: why-i-like-odin
 ---
 
-After returning from my 2013 [thru-hike](http://www.atjindo.com), I began re-learning web development. Thankfully, I stumbled upon the [Odin curriculum](http://www.theodinproject.com/courses).
+After returning from my 2013 Appalachian trail (AT) [thru-hike](http://www.atjindo.com), I began re-learning web development, and in the process, stumbled upon the [Odin curriculum](http://www.theodinproject.com/courses).
 
-Before my big trip, I studied web app development mainly at [Udacity](https://www.udacity.com/), and was able to build my first 'real' website.  However, when I returned, I had forgotten a lot of the detail. I needed a refresher and found the Odin Project. Here are the reasons why I am now sticking with the Odin curriculum.
+Before my big hike, I studied web app development for a few months mainly at [Udacity](https://www.udacity.com/). By the time I returned, I had forgotten a lot of the detail. I needed a refresher.  Thankfully I found the Odin Project. Here are the 6 reasons I am now learning with the Odin curriculum.
 
 <!--more-->
 
 ##1. It's a Great Map and Guide
 
-When I solo hiked the Appalachian trail (2,200 miles), I had a [guidebook](http://www.amazon.com/The-A-T-Guide-Southbound-2013/dp/0982980833/ref=sr_1_2?ie=UTF8&qid=1399332731&sr=8-2&keywords=awol+guide+southbound). It had small maps, elevation profiles, distance markers, and other useful information. It was one of my 'must have' essential items for successfully hiking from Maine to Georgia.
+When I solo hiked the AT (2,200 miles), I carried a [guidebook](http://www.amazon.com/The-A-T-Guide-Southbound-2013/dp/0982980833/ref=sr_1_2?ie=UTF8&qid=1399332731&sr=8-2&keywords=awol+guide+southbound). It contained small maps, elevation profiles, distance markers, and other useful information. It was one of my 'must have' items for hiking the trail from Maine to Georgia.
 
 When attempting the huge feat of learning web development, the Odin curriculum is like a great guide. It's filled with small projects, detailed explanations, links to helpful resources, and a supportive community.  
 
-It keeps you on trail, and cuts down the time you feel completely lost in the woods.
+It keeps you on-trail, and reduces a lot of those completely lost in the woods moments.
 
 ##2. Repository of Learning Tools
 I studied regular expressions briefly when deploying my first real website, but had little experience and a vague understanding.
@@ -34,7 +34,7 @@ These links are just a few of the awesome resources you can find following along
 
 Learning web development, especially on your own, can be extremely daunting.  Big projects are scary and easily derail you.
 
-Completing small projects is fun, builds momentum, and leads to bigger goals and projects.  After working through a few small projects, some of the bigger projects don't look as overwhelming, once you've put a few of the pieces together.
+Completing small projects is fun, builds momentum, and leads to bigger goals and projects.  After working through a few small projects, some of the bigger projects don't look as overwhelming. That huge puzzle doesn't look too bad, once you've put a few of the pieces together.
 
 As an example, I enjoyed working on a [sketchpad](https://github.com/Jberczel/odin-projects/tree/master/sketchpad) project, which is a basic introduction to jQuery. I plan to build on this knowledge for future projects.
 
