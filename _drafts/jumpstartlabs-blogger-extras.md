@@ -4,7 +4,7 @@ title: Jumpstart Labs Blogger Tutorial - Extras
 permalink: jumpstart-labs-blogger-walkthrough
 ---
 
-#Objective
+##Objective
 Complete Extra Credit section of the Jumpstart Labs Blogger 2 Tutorial.
 
 Steps

@@ -15,7 +15,7 @@ Course: Ruby on Rails >> Databases and Active Record >> [Project: Building With 
 <!--more-->
 
 <div class="message">
-<b>Disclaimer:</b> This is my implementation of the Micro-Reddit project from the Odin Curriculum. I'm no Rails Master, so do not take this walkthrough as gospel. If you see any errors or something that is incorrect, please feel free to contact me in the comments.
+<b>Disclaimer:</b> This is my implementation of the Micro-Reddit project from the Odin Curriculum. I'm not a Rails expert, so do not take this walkthrough as gospel. If you see any errors or something that is incorrect, please feel free to contact me in the comments.
 </div>
 
 ##Basic Steps:
