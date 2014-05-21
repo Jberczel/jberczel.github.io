@@ -35,9 +35,9 @@ Signed-in members can view authors and create new posts:
 ##Basic Steps:
 
 1. [Basic Setup](#step1)
-2. [Sessions and Sign In](#step 2)
-3. [Sign Out](#step 3)
-4. [Authentication and Posts](#step 4)
+2. [Sessions and Sign In](#step2)
+3. [Sign Out](#step3)
+4. [Authentication and Posts](#step4)
 
 <a name="step1"></a>
 ##Step 1: Basic Setup
