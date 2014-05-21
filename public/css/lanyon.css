@@ -42,7 +42,9 @@ body {
 
 html {
   /*font-family: "PT Serif", Georgia, "Times New Roman", serif;*/
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-family: 'Enriqueta';
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -85,7 +87,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (min-width: 56rem) {
   .container {
    /* max-width: 38rem;*/
-   max-width: 42rem;
+   max-width: 38rem;
   }
 }
 
