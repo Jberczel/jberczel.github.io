@@ -4,7 +4,7 @@ title: Hartl's Rails Tutorial - Solutions for Ch 10 Exercises
 permalink: hartl-solutions-ch10
 ---
 
-My solutions for Michael Hartl's Rails tutorial, [Ch. 10 exercises](http://www.railstutorial.org/book/user_microposts#sec-micropost_exercises).  I found a lot of help on [StackOverflow](http://stackoverflow.com/), which I recommend if you're looking for detailed-explanations, discussion, or different ways to complete some of these exercises.
+My solutions for Michael Hartl's Rails tutorial, [Ch. 10 exercises](http://www.railstutorial.org/book/user_microposts#sec-micropost_exercises). Some of these exercises are quite challenging; [StackOverflow](http://stackoverflow.com/) is a great resource if you get stuck.
 
 <!--more-->
 
