@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Hartl's Rails Tutorial - Solutions for Ch 9 Exercises 
+title: Hartl's Rails Tutorial - Solutions for Ch 9 Exercises
+comments: true
 permalink: hartl-solutions-ch9
 ---
 
