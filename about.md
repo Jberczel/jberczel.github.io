@@ -6,10 +6,8 @@ title: About
 
 My name is Jamie.  I've been studying web development since returning from my 2013 [thru-hike](http://www.atjindo.com).
 
-Before discovering the [Odin curriculum](http://www.theodinproject.com/courses), I completed two courses at [Udacity](https://www.udacity.com/): Building a Search Engine and Web App Development.  In addition, I learned a little front-end development from other online resources such as nettuts and codeacademy.
+Before the hike, I completed two [Udacity](https://www.udacity.com/) courses: Building a Search Engine and Web App Development. In addition, I learned basic html and css from various other online resources.
 
-Completing the Udacity courses was a rewarding experience, and it gave me the skills to build my first website.
+After returning from 5 months in the woods, I had forgotten quite a bit.  I needed a refresher, and luckily, stumbled upon the [Odin curriculum](http://www.theodinproject.com/courses). 
 
-However, after returning from 5 months on the trail, I had forgotten a lot of the detail. I needed a refresher, and luckily, stumbled upon the Odin curriculum.
-
-In short, I find it highly engaging, informative, and just plain old fun. I haven't looked back and plan to complete the curriculum by the end of the summer (2014).
+In short, I find it highly engaging and comprehensive. The course layout and material were exactly what I was looking for. I'm having a lot of fun working through the projects and plan to complete the curriculum by the end of the summer (2014).
