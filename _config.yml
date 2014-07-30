@@ -6,7 +6,7 @@ pygments:         true
 permalink:        pretty
 
 # Setup
-title:            Welcome to Valhalla
+title:            Valhalla
 tagline:          "Notes on the Odin Curriculum"
 description:      "Thoughts and walkthroughs on the <a href='http://www.theodinproject.com/courses'>Odin Curriculum</a>."
 url:              http://jberczel.github.com
