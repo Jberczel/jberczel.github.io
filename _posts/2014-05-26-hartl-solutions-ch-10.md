@@ -284,3 +284,31 @@ And in `app/views/shared/_feed_item.html.erb`:
 ---
 
 My javascript and jQuery skills are still rudimentary, so I used this [solution](http://stackoverflow.com/questions/10234939/add-a-javascript-display-to-the-home-page-to-count-down-from-140-characters-ra) from StackOverFlow.
+
+{% highlight js %}
+function updateCountdown() {
+
+    var $countdown = $('.countdown');
+
+    // 140 is the max message length
+    var remaining = 140 - $('#micropost_content').val().length;
+
+    $countdown.text(remaining + ' characters remaining');
+
+    var color = 'grey';
+    if (remaining < 21) { color = 'black'; }
+    if (remaining < 11) { color = 'red'; }
+    $countdown.css( { color: color} );
+}
+
+$(document).ready(function($) {
+    updateCountdown();
+    $micropost_content = $('#micropost_content');
+
+    $micropost_content.change(updateCountdown);
+    $micropost_content.keyup(updateCountdown);
+    $micropost_content.keydown(updateCountdown);
+});
+{% endhighlight %}
+
+**Update:** When I first attempted this problem, I could not understand much, so don't get discouraged.  After starting the Javascript course on Odin, I was able to start refactoring the code from StackOverFlow.
