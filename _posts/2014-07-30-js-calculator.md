@@ -168,7 +168,7 @@ anytime I stumbled or became confused about positioning, box model, etc..  I hig
 recommend reading sections of his guide and then applying concepts to this project.
 
 If you read his guide, the CSS in this project should make sense.  You'll probably
-notice other ways to style the calculator.
+notice other ways to style the calculator as well.
 
 
 
