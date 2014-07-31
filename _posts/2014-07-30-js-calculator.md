@@ -165,14 +165,13 @@ TODO:
 
 I used Shay Howe's CSS [guide](http://learn.shayhowe.com/html-css/) as a reference
 anytime I stumbled or became confused about positioning, box model, etc..  I highly 
-recommend reading a section and then try applying it to this project.
+recommend reading sections of his guide and then try applying it to this project.
 
 If you follow along with that guide, the CSS in this project should make sense.
 
-I won't go into detail here, but just mention to take note of the cascading effect
-when applying the classes to the html `<divs>`.  I used a `keys` class on all the buttons.
-On top of that, I'd apply a `numpad` or `operator` classes, which would help distinguish
-between numbers and operator buttons.
+
+
+
 
 
 
