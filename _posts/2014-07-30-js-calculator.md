@@ -165,14 +165,24 @@ TODO:
 
 I used Shay Howe's CSS [guide](http://learn.shayhowe.com/html-css/) as a reference
 anytime I stumbled or became confused about positioning, box model, etc..  I highly 
+<<<<<<< HEAD
 recommend reading sections of his guide and then applying concepts to this project.
 
 If you read his guide, the CSS in this project should make sense.  You'll probably
 notice other ways to style the calculator.
 
 
+=======
+recommend reading sections of his guide and then try applying it to this project.
+>>>>>>> ba37936ee529eaef3529b739d25c7e709a1f9474
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> ba37936ee529eaef3529b739d25c7e709a1f9474
 
 
 
