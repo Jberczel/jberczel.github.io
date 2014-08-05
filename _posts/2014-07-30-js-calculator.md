@@ -14,19 +14,21 @@ Course List >> Javascript and jQuery >> The Basics and the Browser >>
 If you've been following the curriculum, then it's been awhile since you've looked 
 at javascript.  
 
-We learned the basics of javascript in the Web Development 101 course.  In this
-project, you get to refresh those basics.  In terms of difficulty, it is comparable 
+We learned the basics in the Web Development 101 course.  In this
+project, you get to refresh and apply those basics. In terms of difficulty, the
+calculator project is comparable 
 to the jQuery [sketch-a-pad](http://www.theodinproject.com/web-development-101/javascript-and-jquery)
-project, which was very popular in the Web Dev 101 track.
+project, which seemed to be very popular in the Web Dev 101 track.
 
-To see a working version of this project, you can check out my [demo](http://jsfiddle.net/Jberczel/3f3SG/).
+To see a working version of a javascript calculator, you can check out my [demo](http://jsfiddle.net/Jberczel/3f3SG/).
 
 <!--more-->
 
-After building functionality with javascript, you can design the calculator using css.  As an example, 
-I used the Braun/Apple [calculator](http://www.cultofmac.com/188753/the-braun-products-that-inspired-apples-iconic-designs-gallery/) as a model.  Recreating the model is a fun way to learn css.
+My primary objective of this project is the flex your javascript muscles. But after building 
+the functionality with javascript, you can have fun designing the calculator with CSS.  As an example, 
+I used the Braun/Apple [calculator](http://www.cultofmac.com/188753/the-braun-products-that-inspired-apples-iconic-designs-gallery/). Recreating the model from scratch is a fun way to learn CSS.
 
-Also, I went on auto-pilot and automatically used Query in this project. There's not much going on in this project in terms
+Also, I went on auto-pilot and automatically used jQuery on this project. There's not much going on in terms
 of interactivity, so you might want to try and code in pure vanilla javascript.
 
 
@@ -39,10 +41,9 @@ of interactivity, so you might want to try and code in pure vanilla javascript.
 <a name="step1"></a>
 ## Step 1: HTML
 
-The content is the calculator's buttons and screen.  Build the numbers, 
-operators, and "clear" button with html `<div>`s.
+First thing I did was build the calculator buttons and screen with HTML using `<div>`s.
 
-Add IDs and classes to distinguish between the numbers, operators, and screen.
+Then, I added IDs and classes to distinguish between the numbers, operators, and screen.
 This allows us to style based on each `<div>`'s class or id.  Also, it lets us bind
 event handlers to specific buttons, so that when a user clicks on them, some action
 is performed.
