@@ -23,10 +23,10 @@ To see a working version of this project, you can check out my [demo](http://jsf
 
 <!--more-->
 
-After working on the javascript, you can design the calculator using css.  As a model, 
-I used the Braun/Apple [calculator](http://www.cultofmac.com/188753/the-braun-products-that-inspired-apples-iconic-designs-gallery/) as an example.  It is a fun way to learn some css.
+After building functionality with javascript, you can design the calculator using css.  As an example, 
+I used the Braun/Apple [calculator](http://www.cultofmac.com/188753/the-braun-products-that-inspired-apples-iconic-designs-gallery/) as a model.  Recreating the model is a fun way to learn css.
 
-Also, I used jQuery in this project. There's not much going on in this project in terms
+Also, I went on auto-pilot and automatically used Query in this project. There's not much going on in this project in terms
 of interactivity, so you might want to try and code in pure vanilla javascript.
 
 
