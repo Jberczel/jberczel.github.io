@@ -5,7 +5,11 @@ comments: true
 permalink: private-events
 ---
 
+![privents example](/assets/privents.png) 
+
 Course: Course List >> Ruby on Rails >> Advanced Forms and Active Record >> [Project: Associations](http://www.theodinproject.com/ruby-on-rails/associations)
+
+<!--more-->
 
 ##Objective:
 >...build a site similar to a private [Eventbrite](http://www.eventbrite.com) which allows users to create events and then manage user signups. 
@@ -14,7 +18,7 @@ There's countless ways to customize and implement this project, so rather than d
 
 I used twitter bootstrap to work on CSS styling. I saved the extra credit (sending and accepting invites to/from users) for a later date.
 
-<!--more-->
+
 
 ---
 

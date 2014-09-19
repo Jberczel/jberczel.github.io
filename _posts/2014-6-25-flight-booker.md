@@ -5,7 +5,11 @@ comments: true
 permalink: flight-booker
 ---
 
+![flight example](/assets/flight.png) 
+
 Course: Course List >> Ruby on Rails >> Advanced Forms and Active Record >> [Project: Building Advanced Forms](http://www.theodinproject.com/ruby-on-rails/building-advanced-forms)
+
+<!--more-->
 
 ##Objective:
 >In this project, you'll get a chance to tackle some more advanced forms. This is the kind of thing you'll have to work with when handling user orders for anything more complicated than an e-book. In this case, we'll build the first three steps of a typical checkout process for booking a one-way flight:

@@ -5,8 +5,12 @@ comments: true
 permalink: js-calculator
 ---
 
+![calculator example](/assets/calculator.png) 
+
 Course List >> Javascript and jQuery >> The Basics and the Browser >> 
 [Project: On Screen Calculator](http://www.theodinproject.com/javascript-and-jquery/on-screen-calculator)
+
+<!--more-->
 
 ##Objective:
 >Build an on-screen calculator with javascript.
@@ -22,7 +26,7 @@ project, which seemed to be very popular in the Web Dev 101 track.
 
 To see a working version of a javascript calculator, you can check out my [demo](http://jsfiddle.net/Jberczel/3f3SG/).
 
-<!--more-->
+
 
 My primary objective of this project is the flex your javascript muscles. But after building 
 the functionality with javascript, you can have fun designing the calculator with CSS.  As an example, 
