@@ -4,7 +4,7 @@ title: Web Scraping Project - Guitar Forum Search
 comments: true
 permalink: web-scraping
 ---
-![agf example](/assets/agf.png)
+![agf example](/assets/agf2.png)
 
 Currently, there are no web-scraping projects in the Odin Curicculum, but there's a great [article](http://ruby.bastardsbook.com/chapters/html-parsing/) on web-scraping from The Bastards Book of Ruby, which we've read in previous lessons.
 
