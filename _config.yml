@@ -1,6 +1,6 @@
 # Dependencies
 markdown:         redcarpet
-pygments:         true
+highlighter:      pygments
 
 # Permalinks
 permalink:        pretty
@@ -9,13 +9,14 @@ permalink:        pretty
 title:            Valhalla
 tagline:          "Notes on the Odin Curriculum"
 description:      "Thoughts and walkthroughs on the <a href='http://www.theodinproject.com/courses'>Odin Curriculum</a>."
-url:              http://jberczel.github.com
+url:              http://jberczel.github.com/blog
 
 author:
   name:           'Jamie Berczel'
   url:            https://twitter.com/Jberczel
 
 paginate:         5
+paginate_path:    "/blog/page:num"
 
 # Custom vars
 version:          1.0.0

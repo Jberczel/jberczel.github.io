@@ -1,0 +1,46 @@
+#social li {
+  list-style-type: none;
+}
+
+#social a {
+  text-decoration: none;
+}
+
+#about_section h3 {
+  text-align: center;
+}
+
+#toplinks a {
+  text-decoration: none;
+}
+
+#projects_section{
+ display: none;
+}
+
+#projects_section h3 {
+  text-align: center;
+}
+
+#contact_section{
+ display: none;
+ text-align: center;
+}
+
+#contact_section a{
+  text-decoration: none;
+}
+
+.projects {
+  font-size: 10pt;
+}
+
+#about_section a {
+  text-decoration: none;
+}
+
+.header {
+  text-align: center;
+  margin-top: 40px
+}
+

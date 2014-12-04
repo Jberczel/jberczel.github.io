@@ -16,6 +16,9 @@
       `layout: page` in the front-matter. See readme for usage.
     {% endcomment %}
 
+    <!-- Always include link to blog -->
+    <a class="sidebar-nav-item" href="/blog">Blog</a>
+
     {% assign pages_list = site.pages %}
     {% for node in pages_list %}
       {% if node.title != null %}
