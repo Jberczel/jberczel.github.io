@@ -6,9 +6,9 @@ highlighter:      pygments
 permalink:        pretty
 
 # Setup
-title:            Valhalla
-tagline:          "Notes on the Odin Curriculum"
-description:      "Thoughts and walkthroughs on the <a href='http://www.theodinproject.com/courses'>Odin Curriculum</a>."
+title:            "JBerczel's"
+tagline:          "Notes on learning Web Development"
+description:      "Thoughts and notes on learning Web Development"
 url:              http://jberczel.github.com/blog
 
 author:
