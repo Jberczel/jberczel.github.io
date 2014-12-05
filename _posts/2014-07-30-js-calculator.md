@@ -24,17 +24,11 @@ calculator project is comparable
 to the jQuery [sketch-a-pad](http://www.theodinproject.com/web-development-101/javascript-and-jquery)
 project, which seemed to be very popular in the Web Dev 101 track.
 
-To see a working version of a javascript calculator, you can check out my [demo](http://jsfiddle.net/Jberczel/3f3SG/).
+To see a working version of a javascript calculator, you can check out my [version](http://jsfiddle.net/Jberczel/3f3SG/).
 
-
-
-My primary objective of this project is the flex your javascript muscles. But after building 
+The objective of this project is to get you back to speed with javascript. After building 
 the functionality with javascript, you can have fun designing the calculator with CSS.  As an example, 
-I used the Braun/Apple [calculator](http://www.cultofmac.com/188753/the-braun-products-that-inspired-apples-iconic-designs-gallery/). Recreating the model from scratch is a fun way to learn CSS.
-
-Also, I went on auto-pilot and automatically used jQuery on this project. There's not much going on in terms
-of interactivity, so you might want to try and code in pure vanilla javascript.
-
+I used the Braun/Apple [calculator](http://www.cultofmac.com/188753/the-braun-products-that-inspired-apples-iconic-designs-gallery/). Recreating the model from scratch was a fun way to tinker around with CSS.
 
 ##Basic Steps:
 
@@ -157,7 +151,9 @@ replace them, so javascript can perform calculation, using correct syntax.
 **Event Handlers**
 
 
-TODO:
+TODO: If anybody needs further explanation, I can expand, but it should be 
+self-explanatory if you check out the source code.
+
 {% highlight js %}
 
 
