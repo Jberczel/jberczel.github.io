@@ -530,3 +530,22 @@ a.pagination-item:hover {
 .theme-base-0f .related-posts li a:hover {
   color: #8f5536;
 }
+
+/*Custom for horizontal code scrolling*/
+/**
+*
+* Found fix here:
+* http://stackoverflow.com/questions/11093233/how-to-support-scrolling-when-using-pygments-with-jekyll
+*
+**/
+pre code * {
+  white-space: nowrap;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+pre code {
+  white-space: pre;
+}
