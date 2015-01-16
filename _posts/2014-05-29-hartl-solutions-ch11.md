@@ -11,7 +11,7 @@ Ch. 11 also has several add-on features (messaging, password reminders, REST API
 
 <!--more-->
 
-##Exercises 
+##Exercises
 
 [1](#step1)
 [2](#step2)
@@ -107,7 +107,7 @@ I coudldn't find much to refactor in this case.
 
 Here's **Listing 11.31**:
 
-{% highlight erb %}
+{% highlight html+erb %}
 <% provide(:title, @title) %>
 <div class="row">
   <aside class="span4">
@@ -138,12 +138,12 @@ Here's **Listing 11.31**:
     <% end %>
   </div>
 </div>
-
 {% endhighlight %}
 
 I updated the user profile with the `shared/user_info` partial and left the rest as is:
 
-{% highlight erb %}
+{% highlight html+erb %}
+
 <% provide(:title, @title) %>
 <div class="row">
   <aside class="span4">
@@ -189,8 +189,8 @@ In `spec/reqeuests/user_pages.rb`, inside the describe "profile page" block, add
 {% highlight ruby %}
 describe "profile page" do
   let(:user) { FactoryGirl.create(:user) }
-  let!(:m1) { FactoryGirl.create(:micropost, user: user, content: "Foo") }
-  let!(:m2) { FactoryGirl.create(:micropost, user: user, content: "Bar") }
+  let!(:m1) {FactoryGirl.create(:micropost, user: user, content: "Foo")}
+  let!(:m2) {FactoryGirl.create(:micropost, user: user, content: "Bar")}
   before { visit user_path(user) }
   .
   .
@@ -211,7 +211,8 @@ describe "profile page" do
 
 In `app/views/users/show.html.erb`, verify failing tests by commenting out `<%= render 'shared/stats %>`:
 
-{% highlight erb %}
+{% highlight html+erb %}
+
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="span4">

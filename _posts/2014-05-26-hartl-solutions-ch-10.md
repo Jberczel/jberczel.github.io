@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hartl's Rails Tutorial - Solutions for Ch 10 Exercises
-comments: true 
+comments: true
 permalink: hartl-solutions-ch10
 ---
 
@@ -9,7 +9,7 @@ My solutions for Michael Hartl's Rails tutorial, [Ch. 10 exercises](http://www.r
 
 <!--more-->
 
-##Exercises 
+##Exercises
 
 [1](#step1)
 [2](#step2)
@@ -97,7 +97,7 @@ The `app/views/static_pages/home.html.erb` file is cluttered, so create two new 
 
 The first partial displays a user-based homepage, while the later displays generic homepage for users that are not signed in.
 
-{% highlight erb %}
+{% highlight html+erb %}
 # app/views/shared/_user_homepage.html.erb
 
 <div class="row">
@@ -123,7 +123,7 @@ The first partial displays a user-based homepage, while the later displays gener
 {% endhighlight %}
 
 
-{% highlight erb %}
+{% highlight html+erb %}
 # app/views/shared/_homepage.html.erb
 
 <div class="center hero-unit">
@@ -144,7 +144,7 @@ The first partial displays a user-based homepage, while the later displays gener
 
 And now the refactored `app/views/static_pages/home.html.erb`:
 
-{% highlight erb %}
+{% highlight html+erb %}
 <% if signed_in? %>
   <%= render 'shared/user_homepage' %>
 <% else %>
@@ -193,7 +193,7 @@ describe "authorization" do
 
 First create a new partial, `app/views/shared/_delete_link.html.erb`:
 
-{% highlight erb %}
+{% highlight html+erb %}
  <%= link_to "delete", object, method: :delete,
                                      data: { confirm: "You sure?" },
                                      title: object.content %>
@@ -201,7 +201,7 @@ First create a new partial, `app/views/shared/_delete_link.html.erb`:
 
 Then, update `app/views/shared/_feed_item.html.erb`:
 
-{% highlight erb %}
+{% highlight html+erb %}
 <li id="<%= feed_item.id %>">
   ...
   <% if current_user?(feed_item.user) %>
@@ -213,7 +213,7 @@ Then, update `app/views/shared/_feed_item.html.erb`:
 
 And update `app/views/microposts/_micropost.html.erb`:
 
-{% highlight erb %}
+{% highlight html+erb %}
 <li>
   ...
   <% if current_user?(micropost.user) %>
