@@ -126,7 +126,7 @@ In `spec/requests/authentication_pages_spec.rb`, add the following tests:
 Ideally, you want the test to go from RED (fail) to GREEN (pass), so we can insert a "Profile" link in the header (`app/views/layouts/_header.html.erb`) where the user is not signed in:
 
 {% highlight erb %}
-<<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
       <%= link_to "sample app", root_path, id: "logo" %>
