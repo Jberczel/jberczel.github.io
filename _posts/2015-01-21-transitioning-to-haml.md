@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Transitioning to HAML
+comments: true
 permalink: transitioning-to-haml
 ---
 
@@ -16,6 +17,8 @@ you will never go back.
 
 So that's exactly what I did with my guitar website.  Here's one of the
 views displaying list of guitars before and after (note I did some additional refactoring which I'll explain below) using haml:
+
+<!--more-->
 
 ###Before (html + erb)
 
@@ -81,7 +84,7 @@ views displaying list of guitars before and after (note I did some additional re
           = render @posts
   .push
 
--# app/views/posts/_posts.html.haml
+-# app/views/posts/_post.html.haml
 %tr
   %td.listing= post.listing
   %td.last-post=  post.formatted_last_post
