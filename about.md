@@ -6,10 +6,8 @@ title: About
 
 My name is Jamie.  I've been studying web development since returning from my [thru-hike](http://www.atjindo.com).
 
-Before the hike, I completed two [Udacity](https://www.udacity.com/) courses: Building a Search Engine and Web App Development. In addition, I learned basic html and css from various other online resources.
+If you're looking to learn programming/web development, here are some of the resources I used and recommend:
 
-After returning from over 5 months in the woods, I had forgotten quite a bit.  I needed a refresher, and luckily, stumbled upon the [Odin curriculum](http://www.theodinproject.com/courses). 
-
-In short, I found it highly engaging and comprehensive. The course layout and material were exactly what I was looking for. It was a lot of fun, and kept me motivated.
-
-Today, I continue to hone my coding skills with [exercism](http://exercism.io/), a website filled with practice problems in multiple languages, where users provide real world feedback.
+* [Udacity](https://www.udacity.com/) - Building a Search Engine and Web App Development courses are solid foundation to begin learning computer science and web development. Both courses use python programming language, and the web development course also uses Google App Engine.
+* [Odin curriculum](http://www.theodinproject.com/courses) - great place to learn ruby, rails, html/css, jQuery, javascript and other web-related technologies.
+* [exercism](http://exercism.io/) - hone your ruby skills by completing all the ruby exercises.
