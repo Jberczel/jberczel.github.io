@@ -6,7 +6,7 @@ permalink: transitioning-to-haml
 ---
 
 Well I finally experimented with [haml](http://haml.info/). Surprisingly, it felt
-pretty easy transitioning from using html files embedded with erb to haml
+relatively easy transitioning from  html files (embedded with erb) to haml
 files.
 
 As the documentation suggests:
@@ -15,8 +15,8 @@ As the documentation suggests:
 your ERB templates to Haml. Simplify. Enjoy. Laugh. 20 minutes later,
 you will never go back.
 
-So that's exactly what I did with my guitar website.  Here's one of the
-views displaying list of guitars before and after (note I did some additional refactoring which I'll explain below) using haml:
+So that's exactly what I did with my guitar forum website.  Here's one of the
+views displaying list of guitars before and after using haml (note I did some additional refactoring which I'll explain below):
 
 <!--more-->
 
@@ -92,9 +92,9 @@ views displaying list of guitars before and after (note I did some additional re
   %td.views= post.views
 {% endhighlight %}
 
-How does that look?  I think it's much cleaner and easier to read.
+How does that look?  I think it's much easier to read.
 
-While I was converting form erb to haml, I noticed that there was a bit of
+While I was converting form erb to haml, I also noticed that there was a bit of
 presentation logic that could be taken out of the views.  I used a
 decorator pattern (another blog post) to get some of the presentation logic out of the view. In addition, I
 noticed that `@posts` could also be extracted out into its own partial,
