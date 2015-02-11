@@ -120,3 +120,4 @@ And lastly, I was expecting the reverse function (using `#unshift`) to take much
 longer than it did. Supposedly, the `#unshift` causes the solution to be
 O(n^2) since characters have to be shifted in array for each iteration. I'll have to investigate this further.
 
+**EDIT**: Checked with @Marc-André Lafortune on stackoverflow, and it looks like "Ruby now [optimizes]( https://github.com/ruby/ruby/commit/fdbd3716781817c8) for successive unshifts and pre allocates some memory to avoid moving all elements". This helps to explain the different benchmark results using ruby `2.2.0`.
