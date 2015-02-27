@@ -31,7 +31,7 @@ class String
   def my_reverse
     word = ""
     chars = self.chars
-    length.times {word << chars.pop }
+    length.times { word << chars.pop }
     word
   end
 

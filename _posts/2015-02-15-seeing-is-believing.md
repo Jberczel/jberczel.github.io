@@ -6,7 +6,7 @@ permalink: seeing-is-believing
 ---
 
 Just thought I'd share a cool little [ gem ](https://github.com/JoshCheek/seeing_is_believing) I came across recently. As
-mentioned in the README, it was inspired by Bret Victor's thought-provoking talk, [ Inventing on Principle ](https://www.youtube.com/watch?v=PUv66718DII).
+mentioned in the README, it was inspired by Bret Victor's thought-provoking talk [ Inventing on Principle ](https://www.youtube.com/watch?v=PUv66718DII).
 
 The Principle:
 > Creators need an immediate connection to what they create.
@@ -14,15 +14,17 @@ The Principle:
 Seeing is believing acts like a multi-line, editor-based REPL (Read Evaluate Print Loop).
 For ruby, think IRB.
 
+<!--more-->
+
 With seeing-is-believing, you can see what you're doing right in the editor. As an example, we can trace through a binary search function:
 
 {% highlight ruby %}
 
 def binary_search(array, target)
-  low = 0                         # => 0
+  low  = 0                        # => 0
   high = array.length - 1         # => 6
   while low <= high               # => true, true, true
-    mid = (low +high) / 2         # => 3, 1, 2
+    mid = (low + high) / 2        # => 3, 1, 2
     if array[mid] == target       # => false, false, true
       return mid                  # => 2
     elsif array[mid] < target     # => false, true
