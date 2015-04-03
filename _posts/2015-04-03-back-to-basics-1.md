@@ -21,10 +21,12 @@ high-level stuff.
 
 Here's some fun and informative videos on "How the Internet Works": 
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/WwyJGzZmBe8" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WwyJGzZmBe8" frameborder="0" allowfullscreen></iframe>
 
 These last two are more related to what a developer should know:
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/e4S8zfLdLgQ" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/e4S8zfLdLgQ" frameborder="0" allowfullscreen></iframe>
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/FTAPjr7vgxE" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FTAPjr7vgxE" frameborder="0" allowfullscreen></iframe>
+
+<script src="/public/js/fit_vids.js"></script>
