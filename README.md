@@ -1,3 +1,3 @@
-# My Github and Jekyll website
+# Hola Mundo
 
-I am using this website to record my thoughts and walkthroughs of the [Odin Curriculum](http://www.theodinproject.com/courses).
+This is my static website.

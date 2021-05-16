@@ -1,5 +1,5 @@
 # Dependencies
-markdown:         redcarpet
+markdown:         kramdown
 highlighter:      pygments
 
 # Permalinks
@@ -23,3 +23,5 @@ version:          1.0.0
 
 github:
   repo:           https://github.com/Jberczel/jberczel.github.io
+
+plugins: [jekyll-paginate]
